@@ -126,15 +126,6 @@
       padding-left: 1rem;
     }
 
-    .join_btn {
-      width: 100%;
-      font-size: 2rem;
-      line-height: 2;
-      border: 3px solid #606060;
-      margin-bottom: 1rem;
-      padding-left: 1rem;
-    }
-
     #signin,
     input#signup {
       padding-left: 0;
@@ -166,3 +157,42 @@
       text-decoration: none;
       color: inherit;
     }
+
+/* 회원용/비회원용 헤더 설정 */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-button {
+  font-family: inherit;
+  font-size: 2rem;
+  border: none;
+  background: none;
+}
+
+.dropdown-content {
+  position: absolute;
+  width: 100%;
+}
+
+.dropdown-content button {
+  cursor: pointer;
+  font-size: 2rem;
+  font-family: inherit;
+  width: 100%;
+  border: none;
+}
+
+.dropdown-content button:hover {
+  color: white;
+  background-color: #606060;
+}
+
+/*  */
+
+.sign-container {
+  font-size: 2.5rem;
+  border: 0;
+  background: none;
+  font-family: inherit;
+}

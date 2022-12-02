@@ -1,5 +1,6 @@
 package diroumMap.diroumspring.controller.login;
 
+import diroumMap.diroumspring.controller.SessionConst;
 import diroumMap.diroumspring.domain.User;
 import diroumMap.diroumspring.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -25,7 +28,7 @@ public class loginController {
     }
 
     @PostMapping("/users/login")
-    public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm, BindingResult bindingResult){
+    public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm, BindingResult bindingResult, HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
             log.info("error = {}", bindingResult);
@@ -39,7 +42,22 @@ public class loginController {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
         }
+        // 로그인 성공
+        // 세션에 로그인 회원 정보 보관
+        HttpSession session = request.getSession();
 
+        // 세션에 로그인 회원 정보 보관
+        session.setAttribute(SessionConst.LOGIN_USER, loginUser);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
         return "redirect:/";
     }
 }
