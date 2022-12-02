@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다이로움 페이백</title>
+  <meta name="author" content="송유진" />
+  <meta name="description" content="다이로움 페이백 가능지점" />
+  <link href="https://cdn-icons-png.flaticon.com/512/306/306776.png" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <style>
+    .field-error {
+    border-color: #dc3545;
+    color: #dc3545;
+    }
+    </style>
+</head>
+
+<body>
+<nav>
+  <div class="inner">
+    <div class="nav-container">
+      <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
+      <button class="nav-join">
+        <a href="/users/login">로그인/회원가입</a>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="inner">
+    <div class="signin-container">
+      <h2>다이로움 로그인</h2>
+
+        <form action="item.html" th:action th:object="${loginForm}" method="post">
+
+          <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+               th:text="${err}">전체 오류 메시지</p>
+          </div>
+
+          <div class="signin-form">
+            <input type="text" placeholder="아이디" th:field="*{loginId}" class="form-control"
+                   th:errorclass="field-error">
+
+            <input type="password" placeholder="비밀번호" th:field="*{password}" class="form-control"
+                   th:errorclass="field-error">
+            <div class="field-error" th:errors="*{password}" />
+
+            <input type="submit" value="로그인" id="signin" />
+
+            <div class="signup-container">
+              <a href="/users/join" id="signup">회원가입</a>
+            </div>
+            <!-- signup-container -->
+          </div>
+
+        </form>
+        <!-- signin-form -->
+      </div>
+    <!-- signin-container -->
+  </div>
+</main>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+
+</body>
+</html>

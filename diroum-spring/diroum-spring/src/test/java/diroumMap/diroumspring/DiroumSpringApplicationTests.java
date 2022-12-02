@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DiroumSpringApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+	void contextLoad(){
 
+	}
 }
