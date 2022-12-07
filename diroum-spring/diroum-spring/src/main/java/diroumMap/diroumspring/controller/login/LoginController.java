@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class loginController {
+public class LoginController {
 
     private final LoginService loginService;
 
@@ -28,7 +28,8 @@ public class loginController {
     }
 
     @PostMapping("/users/login")
-    public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm, BindingResult bindingResult, HttpServletRequest request){
+    public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm,
+                        BindingResult bindingResult, HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
             log.info("error = {}", bindingResult);
