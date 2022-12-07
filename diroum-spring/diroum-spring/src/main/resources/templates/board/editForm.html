@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이로움 페이백</title>
+    <meta name="author" content="송유진" />
+    <meta name="description" content="다이로움 페이백 가능지점" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/map.css}" />
+    <link href="https://cdn-icons-png.flaticon.com/512/306/306776.png" rel="shortcut icon" type="image/x-icon">
+</head>
+
+<body>
+<nav>
+    <div class="inner">
+        <div class="nav-container">
+            <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
+            <button class="nav-join"> <a href="./signin.html">로그인/회원가입</a></button>
+        </div>
+    </div>
+</nav>
+
+<div class="inner">
+    <div class="board_title">
+        <strong>게시글 수정</strong>
+    </div>
+
+    <form th:action th:object="${postForm}" method="post">
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" id="title" th:field="*{title}" class="form-control"
+                                   th:errorclass="field-error" placeholder="제목 입력"></dd>
+                        <div class="field-error" th:errors="*{title}" />
+                    </dl>
+                </div>
+                <div class="info">
+
+                </div>
+                <div class="cont">
+                    <textarea class="form-control" rows="5" id="content" name="content" th:value="*{content}" th:text="*{content}"></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <button type="submit" class="on">수정완료</button>
+                <button th:onclick="|location.href='@{/board}'|" type="button">취소</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</main>
+</body>
+</html>
