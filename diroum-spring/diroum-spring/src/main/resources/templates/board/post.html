@@ -17,7 +17,6 @@
   <div class="inner">
     <div class="nav-container">
       <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-      <button class="nav-join"> <a href="./signin.html">로그인/회원가입</a></button>
     </div>
   </div>
 </nav>
@@ -33,21 +32,25 @@
              value="제목" th:text="${post.title}" readonly></div>
       </div>
       <div class="info">
+
         <div class="info1">
           <dt>번호</dt>
           <div type="text" id="postId" name="postId" class="form-control"
                value="1" th:text="${post.id}" readonly></div>
         </div>
+
         <div class="info1">
           <dt>글쓴이</dt>
           <div type="text" id="writer" name="postTitle" class="form-control"
                value="작성자" th:text="${post.user.loginId}" readonly></div>
         </div>
+
         <div class="info1">
           <dt>작성일</dt>
           <div type="text" id="registerDate" name="registerDate" class="form-control"
                value="작성자" th:text="${post.registerDate}" readonly></div>
         </div>
+
       </div>
       <div class="cont">
         <div class="form-control" rows="5" id="postContent" name="postContent"

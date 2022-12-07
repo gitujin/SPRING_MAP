@@ -307,6 +307,7 @@
     font-size: 0;
   }
 
+  /* 페이지 버튼 */
   .board_page a {
     display: inline-block;
     width: 32px;

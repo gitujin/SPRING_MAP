@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,8 @@ public class LoginController {
 
     @PostMapping("/users/login")
     public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm,
-                        BindingResult bindingResult, HttpServletRequest request){
+                        BindingResult bindingResult, HttpServletRequest request,
+                        @RequestParam(defaultValue = "/") String redirectURL){
 
         if(bindingResult.hasErrors()){
             log.info("error = {}", bindingResult);
