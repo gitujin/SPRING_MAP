@@ -26,38 +26,38 @@
         <strong>자유게시판</strong>
         <p>자유롭게 소통할 수 있는 공간입니다.</p>
     </div>
-    <div class="board_list_wrap">
-        <div class="board_list">
-            <div class="top">
-                <div class="num">번호</div>
-                <div class="title">제목</div>
-                <div class="writer">글쓴이</div>
-                <div class="date">작성일</div>
-            </div>
-            <tr th:each="list,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
-                <div>
-                    <div class="num"><span th:text="${(resultMap.totalCnt - index.index)
-                                                        - (paging.pageNumber * paging.pageSize)}"></span></div>
-                    <div class="title"><a th:href="@{/board/{postId}(postId=${list.id})}"
-                                        th:text="${list.title}">제목</a></div>
 
-                    <div class="writer" th:text="${list.user.loginId}">작성자</div>
-                    <div class="date" th:text="${list.registerDate}">작성일</div>
-                </div>
-            </tr>
-        </div>
+    <div class="board_list_wrap">
+        <table class="board_list">
+            <thead>
+                <tr class="top">
+                    <th class="num">번호</th>
+                    <th class="title">제목</th>
+                    <th class="writer">글쓴이</th>
+                    <th class="date">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="list,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
+                    <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>
+                    <td class="title"><a th:href="@{/board/{postId}(postId=${list.id})}"
+                                            th:text="${list.title}">제목</a></td>
+
+                    <td class="writer" th:text="${list.user.loginId}">작성자</td>
+                    <td class="date" th:text="${list.registerDate}">작성일</td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="board_page">
-            <a href="#" class="bt first"><<</a>
-            <a href="#" class="bt prev"><</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="bt next">></a>
-            <a href="#" class="bt last">>></a>
+            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
+
+                <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/board/(page = ${page-1})}" th:text="${page}"></a>
+
+            </th:block>
         </div>
+
         <div class="bt_wrap">
             <button href="#" th:onclick="|location.href='@{/board/register}'|" type="button" class="on">글쓰기</button>
             <!-- <a href="#">수정</a> -->

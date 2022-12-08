@@ -6,6 +6,7 @@ import diroumMap.diroumspring.domain.User;
 import diroumMap.diroumspring.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -27,8 +28,10 @@ public class BoardController {
 
     @GetMapping
     public String postList(Model model,
-                           @PageableDefault(sort = "id", direction = Sort.Direction.DESC, size = 5) Pageable pageable) {
+                           @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+
         model.addAttribute("resultMap", boardService.findAll(pageable));
+
         return "board/postList";
     }
 

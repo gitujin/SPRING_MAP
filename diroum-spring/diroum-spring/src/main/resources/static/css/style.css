@@ -255,7 +255,30 @@
     border-top: 2px solid #000;
   }
 
-  .board_list > div {
+  td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.4rem;
+    padding: 15px 0;
+  }
+
+  th {
+    border-bottom: 1px solid #999;
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding: 15px 0;
+  }
+
+  .board_list .title {
+    width: 46%;
+    text-align: left;
+  }
+
+  .board_list .top .title {
+    text-align: center;
+  }
+
+ /* .board_list > div {
     border-bottom: 1px solid #ddd;
     font-size: 0;
   }
@@ -298,7 +321,7 @@
 
   .board_list .date {
     width: 20%;
-  }
+  }*/
 
 
   .board_page {
