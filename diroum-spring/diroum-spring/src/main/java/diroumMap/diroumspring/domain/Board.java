@@ -28,13 +28,19 @@ public class Board {
 
     private String registerDate;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Long count;
+
     @Builder
-    public Board(String title, String content, User user, LocalDateTime registerDate) {
+    public Board(String title, String content, User user, LocalDateTime registerDate, Long count) {
         this.title = title;
         this.content = content;
         this.user = user;
+        this.count = count;
         this.registerDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(registerDate);
     }
+
+
 
     // 생성 메서드
     public static Board createBoard(String title, String content, User user){
@@ -48,5 +54,10 @@ public class Board {
     public void update(String title, String content){
         this.title = title;
         this.content = content;
+    }
+
+    public Board updateViewCount(Long viewCount){
+        this.count = viewCount+1;
+        return this;
     }
 }

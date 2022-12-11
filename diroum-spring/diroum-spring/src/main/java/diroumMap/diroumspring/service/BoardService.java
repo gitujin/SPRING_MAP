@@ -55,7 +55,6 @@ public class BoardService {
         return listMap;
     }
 
-
     /*
     *  게시글 단건 조회
     */
@@ -80,4 +79,14 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    /*
+     * 게시글 조회수
+     */
+    @Transactional
+    public Board selectBoardDetail(Long id){
+        Board board = boardRepository.findById(id).get();
+        board.updateViewCount(board.getCount());
+        return board;
+    }
 }
+

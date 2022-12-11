@@ -270,7 +270,7 @@
   }
 
   .board_list .title {
-    width: 46%;
+    width: 45%;
     text-align: left;
   }
 
@@ -313,17 +313,22 @@
 
   .board_list .top .title {
     text-align: center;
+  }*/
+  .board_list .num {
+    width: 10%;
   }
 
   .board_list .writer {
-    width: 22%;
+    width: 15%;
   }
 
   .board_list .date {
-    width: 20%;
-  }*/
+    width: 18%;
+  }
 
-
+  .board_list .views {
+    width: 7%;
+  }
   .board_page {
     margin-top: 30px;
     text-align: center;

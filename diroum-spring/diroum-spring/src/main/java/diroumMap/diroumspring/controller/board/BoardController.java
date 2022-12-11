@@ -39,6 +39,8 @@ public class BoardController {
     public String postView(@PathVariable Long postId, Model model) {
         log.info("postView");
 
+        Board board = boardService.selectBoardDetail(postId);
+
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
 
