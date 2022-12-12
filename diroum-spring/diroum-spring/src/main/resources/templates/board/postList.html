@@ -53,12 +53,12 @@
         </table>
 
         <div class="board_page">
-            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
 
+            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
                 <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
                 <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/board/(page = ${page-1})}" th:text="${page}"></a>
-
             </th:block>
+
         </div>
 
         <div class="bt_wrap">

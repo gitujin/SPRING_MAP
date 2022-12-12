@@ -157,6 +157,13 @@
     position: relative;
   }
 
+  /*adminAdd 추가*/
+   .signin-form div {
+     text-align: left;
+     font-size: 2rem;
+     padding-bottom: 1%;
+   }
+
   .signin-form input {
     width: 100%;
     font-size: 2rem;
@@ -180,6 +187,33 @@
   input#signup:hover {
     color: black;
   }
+
+   .bt_add {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .bt_add a {
+      display: inline-block;
+      min-width: 80px;
+      margin-left: 10px;
+      padding: 10px;
+      border: 1px solid rgb(0, 0, 0);
+      border-radius:  2px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .bt_add a:first-child {
+      margin-left: 85%;
+    }
+
+   .bt_add a.on {
+      background: #000;
+      color: #fff;
+   }
 
   .signup-container {
     width: 100%;
@@ -508,3 +542,94 @@
    border-color: #dc3545;
    color: #dc3545;
   }
+
+   /* 어드민 항목 수정 */
+   .board_edit {
+     width: 100%;
+     border-top: 2px solid #000;
+   }
+
+   .board_edit > div {
+     border-bottom: 1px solid #ddd;
+     font-size: 0;
+   }
+
+   .board_edit > .top {
+     border-color: #999;
+   }
+
+   .board_edit > div:last-child {
+     border-bottom: 1px solid #000;
+   }
+
+   .board_edit > div > div {
+     display: inline-block;
+     padding: 15px 0;
+     text-align: center;
+     font-size: 1.4rem;
+   }
+
+
+   td {
+     text-align: center;
+     border-bottom: 1px solid #ddd;
+     font-size: 1.4rem;
+     padding: 15px 0;
+   }
+
+   th {
+     border-bottom: 1px solid #999;
+     font-weight: 600;
+     font-size: 1.4rem;
+     padding: 15px 0;
+   }
+
+   .board_edit > div.top > div {
+     font-weight: 600;
+   }
+
+   .board_edit .name {
+     width: 15%;
+   }
+
+   .board_edit .top .name {
+     text-align: center;
+   }
+
+   .board_edit .address {
+     width: 55%;
+   }
+
+   .board_edit .category {
+     width: 15%;
+   }
+
+   .board_edit .management {
+     width: 15%;
+   }
+
+   .bt_wrap {
+     margin-top: 30px;
+     text-align: center;
+     font-size: 0;
+   }
+
+   .bt_wrap a {
+     display: inline-block;
+     min-width: 80px;
+     margin-left: 10px;
+     padding: 10px;
+     border: 1px solid #000;
+     border-radius:  2px;
+     font-size: 1.4rem;
+     cursor: pointer;
+   }
+
+   .bt_wrap a:first-child {
+     margin-left: 0;
+   }
+
+   .bt_wrap a.on {
+     background: #000;
+     color: #fff;
+   }
