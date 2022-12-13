@@ -28,7 +28,7 @@ public class BoardController {
 
     @GetMapping
     public String postList(Model model,
-                           @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+                           @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
         model.addAttribute("resultMap", boardService.findAll(pageable));
 
