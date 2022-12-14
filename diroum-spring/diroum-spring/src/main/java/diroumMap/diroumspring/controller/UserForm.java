@@ -8,10 +8,10 @@ import javax.validation.constraints.NotBlank;
 @Getter @Setter
 public class UserForm {
 
-    @NotBlank
+    @NotBlank(message = "아이디는 필수입니다.")
     private String loginId;
 
-    @NotBlank
+    @NotBlank(message = "비밀번호는 필수입니다.")
     private String password;
 
     @NotBlank(message = "이름은 필수입니다.")

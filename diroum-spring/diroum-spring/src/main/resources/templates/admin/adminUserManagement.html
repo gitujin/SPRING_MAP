@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이로움 페이백</title>
+    <meta name="author" content="송유진" />
+    <meta name="description" content="다이로움 페이백 가능지점" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="map.css" />
+    <link href="https://cdn-icons-png.flaticon.com/512/306/306776.png" rel="shortcut icon" type="image/x-icon">
+</head>
+
+<body>
+<nav>
+    <div class="inner">
+        <div class="nav-container">
+            <h1 class="nav-title">다이로움 지도</h1>
+            <button class="nav-join"> <a href="./signin.html">로그인/회원가입</a></button>
+        </div>
+    </div>
+</nav>
+
+<div class="inner">
+    <div class="board_title">
+        <strong>관리자 페이지_유저 관리</strong>
+    </div>
+    <div class="category-list">
+        <button class="category-item2" id="noPayBack" onClick="location.href='adminList.html'">업체 리스트로 이동</button>
+    </div>
+
+    <div class="board_edit_wrap">
+
+        <table class="user_management">
+            <thead>
+            <tr class="top">
+                <th width="5%" class="number">번호</th>
+                <th width="10%" class="userId">유저 아이디</th>
+                <th width="10%" class="name">이름</th>
+                <th width="10%" class="loginId">아이디</th>
+                <th width="10%" class="age">나이</th>
+                <th width="10%" class="category">권한번호</th>
+                <th width="10%" class="management">관리</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td width="5%" class="number">1</td>
+                <td width="10%" class="userId">13</td>
+                <td width="10%" class="name">송유진</td>
+                <td width="10%" class="loginId">syj9471</td>
+                <td width="10%" class="age">24</td>
+                <td width="10%" class="category">0</td>
+                <td>
+                    <button class="btn_delete" type="submit">삭제</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="board_page">
+            <a href="#" class="bt first"><<</a>
+            <a href="#" class="bt prev"><</a>
+            <a href="#" class="num on">1</a>
+            <a href="#" class="num">2</a>
+            <a href="#" class="num">3</a>
+            <a href="#" class="num">4</a>
+            <a href="#" class="num">5</a>
+            <a href="#" class="bt next">></a>
+            <a href="#" class="bt last">>></a>
+        </div>
+    </div>
+</div>
+
+
+</main>
+</body>
+</html>

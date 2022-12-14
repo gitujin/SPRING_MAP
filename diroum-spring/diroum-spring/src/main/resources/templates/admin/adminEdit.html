@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이로움 페이백</title>
+    <meta name="author" content="송유진" />
+    <meta name="description" content="다이로움 페이백 가능지점" />
+    <link href="https://cdn-icons-png.flaticon.com/512/306/306776.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./sign.css" />
+</head>
+
+<body>
+<nav>
+    <div class="inner">
+        <div class="nav-container">
+            <h1 class="nav-title"><a href="./index.html">다이로움 지도</a></h1>
+            <button class="nav-join">
+                <a href="./signin.html">로그인/회원가입</a>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="inner">
+        <div class="signin-container">
+            <h2>관리자 페이지_업체 수정</h2>
+            <div class="signin-form">
+                <div class="category">카테고리</div>
+                <input type="text" id="category" />
+
+                <div class="store-name">가게 이름</div>
+                <input type="text" id="store-name" />
+
+                <div class="address">주소</div>
+                <input type="text" id="address" />
+
+                <div class="bt_add">
+                    <a href="adminAdd.html" class="on">추가하기</a>
+                </div>
+
+                <!-- signup-container -->
+            </div>
+            <!-- signin-form -->
+        </div>
+        <!-- signin-container -->
+    </div>
+</main>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script src="./signup.js"></script>
+</body>
+</html>

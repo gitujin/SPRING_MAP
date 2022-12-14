@@ -23,12 +23,16 @@ public class User {
     private String name;
     private Integer age;
 
+    @Column(columnDefinition = "integer default 0")
+    private int verify;
+
     @Builder
-    public User(String loginId, String password, String name, int age) {
+    public User(String loginId, String password, String name, int age, int verify) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
         this.age = age;
+        this.verify = verify;
     }
 }
 

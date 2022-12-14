@@ -159,7 +159,6 @@
 
   /*adminAdd 추가*/
    .signin-form div {
-     text-align: left;
      font-size: 2rem;
      padding-bottom: 1%;
    }
@@ -171,6 +170,7 @@
     border: 3px solid #606060;
     margin-bottom: 1rem;
     padding-left: 1rem;
+    align-items: center;
   }
 
   #signin,
@@ -186,6 +186,18 @@
   #signin:hover,
   input#signup:hover {
     color: black;
+  }
+
+  .signup-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  #signup {
+    display: block;
+    color: black;
+    font-size: 2rem;
+    text-decoration: none;
   }
 
    .bt_add {
@@ -215,17 +227,7 @@
       color: #fff;
    }
 
-  .signup-container {
-    width: 100%;
-    text-align: center;
-  }
 
-  #signup {
-    display: block;
-    color: black;
-    font-size: 2rem;
-    text-decoration: none;
-  }
 
   a {
     text-decoration: none;
@@ -632,4 +634,98 @@
    .bt_wrap a.on {
      background: #000;
      color: #fff;
+   }
+
+ /* 유저 관리 페이지 */
+   .user_management {
+     width: 100%;
+     border-top: 2px solid #000;
+   }
+
+   td {
+     text-align: center;
+     border-bottom: 1px solid #ddd;
+     font-size: 1.4rem;
+     padding: 15px 0;
+   }
+
+   th {
+     border-bottom: 1px solid #999;
+     font-weight: 600;
+     font-size: 1.4rem;
+     padding: 15px 0;
+   }
+
+   .user_management .number {
+     width: 5%;
+   }
+
+   .user_management .userId {
+     width: 10;
+   }
+
+   .user_management .name {
+     width: 10%;
+   }
+
+   .user_management .top .name {
+     text-align: center;
+   }
+
+   .user_management .loginId {
+     width: 10%;
+   }
+
+   .user_management .age {
+     width: 10%;
+   }
+
+   .user_management .category {
+     width: 10%;
+   }
+
+     .user_management .management {
+     width: 10%;
+   }
+
+   /* 관리자 홈페이지 */
+   .category-item1 {
+     color: black;
+     width: 19%;
+     height: 8rem;
+     background: none;
+     border: none;
+     font-family: inherit;
+     font-size: 1.6rem;
+   }
+
+   .category-item1.bt_add{
+     color: #9ACD32;
+     cursor:pointer;
+   }
+
+   .category-item1:hover{
+     color: #9ACD32;
+     cursor:pointer;
+   }
+
+   /* 관리자 페이지 카테고리 */
+   .category-item2 {
+     color: black;
+     width: 24%;
+     height: 8rem;
+     background: none;
+     border: none;
+     font-family: inherit;
+     font-size: 1.6rem;
+   }
+
+   .category-item2.bt_add{
+     color: #9ACD32;
+     cursor:pointer;
+   }
+
+   .category-item2:hover{
+     color: #9ACD32;
+     cursor:pointer;
    }
