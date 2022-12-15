@@ -1,8 +1,12 @@
 package diroumMap.diroumspring.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -22,12 +26,32 @@ public class Store {
     @Column(nullable = false, length = 45)
     private String category;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date createAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Date updateAt;
+    private String createAt;
 
+    @Builder
+    public Store(String title, String address, String category,LocalDateTime createAt){
+        this.title = title;
+        this.address = address;
+        this.category = category;
+        this.createAt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(createAt);
+    }
+
+    //==생성 메서드==//
+    public static Store createStore(String category, String title, String address){
+        return Store.builder()
+                .category(category).title(title).address(address)
+                .createAt(LocalDateTime.now())
+                .build();
+    }
+
+    //==비즈니스 메서드==//
+    public void update(String category, String title,String address){
+        this.category = category;
+        this.title = title;
+        this.address = address;
+    }
 }

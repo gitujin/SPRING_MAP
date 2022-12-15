@@ -25,6 +25,10 @@ public class HomeController {
             return "home";
         }
 
+        if(loginUser.getVerify() == 9){
+            return "adminHome";
+        }
+
         model.addAttribute("user", loginUser);
         return "loginHome";
     }

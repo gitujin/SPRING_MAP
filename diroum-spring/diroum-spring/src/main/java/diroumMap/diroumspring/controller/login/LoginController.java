@@ -23,7 +23,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @GetMapping("/users/login")
+    @GetMapping("/users/login") //로그인 버튼 누르면 로그인 창으로
     public String loginForm(@ModelAttribute("loginForm") UserLoginForm loginForm){
         return "login/loginForm";
     }
@@ -44,6 +44,7 @@ public class LoginController {
             log.info("login Fail");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
+
         }
         // 로그인 성공
         // 세션에 로그인 회원 정보 보관
@@ -51,6 +52,12 @@ public class LoginController {
 
         // 세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_USER, loginUser);
+
+        if (loginUser.getVerify() == 9)  {
+            log.info("관리자 로그인");
+
+            return "adminHome";
+        }
 
         return "redirect:/";
     }
