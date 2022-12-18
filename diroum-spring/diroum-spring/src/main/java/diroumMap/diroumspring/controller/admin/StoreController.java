@@ -16,7 +16,6 @@ import javax.validation.Valid;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/adminHome")
 public class StoreController {
 
     private final StoreService storeService;
@@ -24,10 +23,10 @@ public class StoreController {
     /**
      * 리스트
      */
-    @GetMapping
+    @GetMapping("/admin/userList")
     public String storeList(Model model){
         model.addAttribute("list",storeService.findAll());
-        return "admin/adminList";
+        return "admin/adminUserManagement";
     }
 
     /**

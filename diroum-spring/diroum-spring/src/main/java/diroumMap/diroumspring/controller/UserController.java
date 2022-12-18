@@ -36,7 +36,6 @@ public class UserController {
             return "users/signupForm";
         }
 
-
         User user = User.builder()
                 .loginId(userForm.getLoginId())
                 .password(userForm.getPassword())

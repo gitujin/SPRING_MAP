@@ -24,7 +24,7 @@ public class User {
     private Integer age;
 
     @Column(columnDefinition = "integer default 0")
-    private int verify;
+    private Integer verify;
 
     @Builder
     public User(String loginId, String password, String name, int age, int verify) {

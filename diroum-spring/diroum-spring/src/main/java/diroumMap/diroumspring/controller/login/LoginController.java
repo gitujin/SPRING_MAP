@@ -39,6 +39,7 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(loginForm.getLoginId(),loginForm.getPassword());
+        System.out.println("loginUser = " + loginUser);
 
         if (loginUser == null){
             log.info("login Fail");
@@ -46,20 +47,20 @@ public class LoginController {
             return "login/loginForm";
 
         }
+
+        int verify = loginUser.getVerify();
+        System.out.println("verify = " + verify);
+
         // 로그인 성공
         // 세션에 로그인 회원 정보 보관
         HttpSession session = request.getSession();
 
         // 세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_USER, loginUser);
+        session.setAttribute("LOGIN_VERIFY",verify);
 
-        if (loginUser.getVerify() == 9)  {
-            log.info("관리자 로그인");
 
-            return "adminHome";
-        }
-
-        return "redirect:/";
+        return "redirect:" + redirectURL;
     }
 
     @PostMapping("/logout")

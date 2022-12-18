@@ -26,6 +26,7 @@ public class HomeController {
         }
 
         if(loginUser.getVerify() == 9){
+            model.addAttribute("user", loginUser);
             return "adminHome";
         }
 

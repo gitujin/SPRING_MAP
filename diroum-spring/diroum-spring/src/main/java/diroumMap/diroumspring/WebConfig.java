@@ -11,14 +11,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
         registry.addInterceptor(new LoginCheckInterceptor()) //비회원X, 회원O
-                .order(2)
+                .order(1)
                 .addPathPatterns("/**") //막을 것
                 .excludePathPatterns("/", "/signup", "/users/login", "/logout", "/board",
                         "/*.ico", "/css/**", "/error", "/js/**", "/users/join"); // 그냥 할 수 있는 것
 
         registry.addInterceptor(new AdminInterceptor()) // 회원, 비회원 X, 관리자 O
-                .order(1)
+                .order(2)
                 .addPathPatterns("/admin/**"); //막을 것
 
     }
