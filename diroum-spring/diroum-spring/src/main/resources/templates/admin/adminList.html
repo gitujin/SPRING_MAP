@@ -15,15 +15,18 @@
 <nav>
     <div class="inner">
         <div class="nav-container">
-            <h1 class="nav-title">다이로움 지도</h1>
-            <button class="nav-join"> <a href="./signin.html">로그인/회원가입</a></button>
+            <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
         </div>
     </div>
 </nav>
 
 <div class="inner">
-    <div class="board_title">
-        <strong>관리자 페이지_업체 리스트</strong>
+    <div class="board2_title">
+        <strong>관리자 페이지_업체 관리</strong>
+        <div class="category-list">
+            <button class="category-item2" id="noPayBack" type="button"
+                    th:onclick="|location.href='@{/admin/userList}'|">유저 관리로 이동</button>
+        </div>
     </div>
 
     <div class="board_edit_wrap">

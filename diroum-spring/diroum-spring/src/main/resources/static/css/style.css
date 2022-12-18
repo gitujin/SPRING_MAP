@@ -711,6 +711,19 @@
    }
 
    /* 관리자 페이지 카테고리 */
+   .board2_title{
+     margin-top: 40px;
+   }
+
+   .board2_title strong{
+     font-size: 3rem;
+   }
+
+   .board2_title p {
+     margin-top: 5px;
+     font-size: 1.4rem;
+   }
+
    .category-item2 {
      color: black;
      width: 24%;

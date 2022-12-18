@@ -36,7 +36,7 @@ public class UserService {
     /*
      * 회원 전체 조회
      */
-    public List<User> findUsers(){
+    public List<User> findAll(){
         return userRepository.findAll();
     }
 

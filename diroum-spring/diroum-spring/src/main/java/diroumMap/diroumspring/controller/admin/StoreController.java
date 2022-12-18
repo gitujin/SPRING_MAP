@@ -20,13 +20,14 @@ public class StoreController {
 
     private final StoreService storeService;
 
+
     /**
-     * 리스트
+     * 업체 리스트
      */
-    @GetMapping("/admin/userList")
+    @GetMapping("/admin/adminList")
     public String storeList(Model model){
         model.addAttribute("list",storeService.findAll());
-        return "admin/adminUserManagement";
+        return "admin/adminList";
     }
 
     /**
