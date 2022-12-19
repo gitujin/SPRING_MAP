@@ -24,7 +24,7 @@
     <div class="board2_title">
         <strong>관리자 페이지_업체 관리</strong>
         <div class="category-list">
-            <button class="category-item2" id="noPayBack" type="button"
+            <button class="category-item2" type="button"
                     th:onclick="|location.href='@{/admin/userList}'|">유저 관리로 이동</button>
         </div>
     </div>
@@ -33,18 +33,18 @@
 
         <table class="board_edit">
             <thead>
-            <tr class="top">
-                <th width="15%" class="name">이름</th>
-                <th width="55%" class="address">주소</th>
-                <th width="15%" class="category">카테고리</th>
-                <th width="15%" class="management">관리</th>
-            </tr>
+                <tr class="top">
+                    <th width="15%" class="title">이름</th>
+                    <th width="55%" class="address">주소</th>
+                    <th width="15%" class="category">카테고리</th>
+                    <th width="15%" class="management">관리</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td width="15%" class="name">안녕하세요</td>
-                <td width="55%" class="address">2022.12.04</td>
-                <td width="15%" class="category">123</td>
+            <tr th:each="store : ${storeList}">
+                <td width="15%" class="title" th:text="${store.title}">안녕하세요</td>
+                <td width="55%" class="address" th:text="${store.address}">2022.12.04</td>
+                <td width="15%" class="category" th:text="${store.category}">123</td>
                 <td>
                     <button onClick="location.href='adminEdit.html'" class="btn_edit" type="submit">수정</button>
                     <button class="btn_delete" type="submit">삭제</button>

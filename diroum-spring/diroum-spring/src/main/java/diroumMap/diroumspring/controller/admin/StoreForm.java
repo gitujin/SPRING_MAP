@@ -12,7 +12,7 @@ public class StoreForm {
     private String category;
 
     @NotNull
-    private String name;
+    private String title;
 
     @NotNull
     private String address;

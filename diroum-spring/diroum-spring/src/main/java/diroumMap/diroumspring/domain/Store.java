@@ -1,7 +1,9 @@
 package diroumMap.diroumspring.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.util.Date;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +36,11 @@ public class Store {
     private String createAt;
 
     @Builder
-    public Store(String title, String address, String category,LocalDateTime createAt, User user){
+    public Store(String title, String address, String category,LocalDateTime createAt){
         this.title = title;
         this.address = address;
         this.category = category;
         this.createAt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(createAt);
-        this.user = user;
     }
 
     //==생성 메서드==//

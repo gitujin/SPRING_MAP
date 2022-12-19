@@ -27,7 +27,7 @@ public class StoreController {
      */
     @GetMapping("/adminList")
     public String storeList(Model model){
-        model.addAttribute("list",storeService.findAll());
+        model.addAttribute("storeList",storeService.findAll());
         return "admin/adminList";
     }
 
@@ -46,8 +46,10 @@ public class StoreController {
             return "admin/adminAdd";
         }
 
-        storeService.storeAdd(storeForm.getCategory(), storeForm.getName(), storeForm.getAddress());
+        storeService.storeAdd(storeForm.getCategory(), storeForm.getTitle(), storeForm.getAddress());
 
         return "redirect:/admin";
     }
+
+
 }
