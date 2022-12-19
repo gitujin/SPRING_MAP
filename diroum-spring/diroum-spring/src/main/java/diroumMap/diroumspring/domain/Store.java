@@ -33,11 +33,12 @@ public class Store {
     private String createAt;
 
     @Builder
-    public Store(String title, String address, String category,LocalDateTime createAt){
+    public Store(String title, String address, String category,LocalDateTime createAt, User user){
         this.title = title;
         this.address = address;
         this.category = category;
         this.createAt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(createAt);
+        this.user = user;
     }
 
     //==생성 메서드==//

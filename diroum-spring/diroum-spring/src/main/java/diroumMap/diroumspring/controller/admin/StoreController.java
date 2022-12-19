@@ -16,6 +16,7 @@ import javax.validation.Valid;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class StoreController {
 
     private final StoreService storeService;
@@ -24,7 +25,7 @@ public class StoreController {
     /**
      * 업체 리스트
      */
-    @GetMapping("/admin/adminList")
+    @GetMapping("/adminList")
     public String storeList(Model model){
         model.addAttribute("list",storeService.findAll());
         return "admin/adminList";

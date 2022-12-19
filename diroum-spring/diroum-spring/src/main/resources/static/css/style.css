@@ -743,3 +743,84 @@
      color: #9ACD32;
      cursor:pointer;
    }
+
+   .bt_add {
+     margin-top: 30px;
+     text-align: center;
+     font-size: 0;
+   }
+
+   .bt_add .add {
+     display: inline-block;
+     min-width: 70px;
+     margin-left: 10px;
+     padding: 10px;
+     border: 1px solid rgb(0, 0, 0);
+     border-radius: 3px;
+     font-size: 1.4rem;
+     cursor: pointer;
+     text-align: center;F
+   }
+
+   .bt_add .add:first-child {
+     margin-left: 85%;
+   }
+
+   .bt_add .add {
+     background: #000;
+     color: #fff;
+   }
+
+   /* option select*/
+   /* IE */
+   select::-ms-expand {
+   	display: none;
+   }
+   .select {
+     -o-appearance: none;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+   }
+
+   .select {
+     height: 45px;
+     background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+     background-size: 20px;
+     padding: 5px 30px 5px 10px;
+     outline: 0 none;
+     border: 3px solid #606060;
+     margin-bottom: 1rem;
+     font-size: 1.5rem;
+   }
+
+   .select option {
+     background: black;
+     color: #fff;
+     padding: 3px 0;
+   }
+
+   .admin-form {
+       width: 90%;
+       max-width: 50rem;
+       margin: 2rem auto 0;
+       display: flex;
+       flex-direction: column;
+       position: relative;
+     }
+
+    .admin-form div {
+        text-align: left;
+        font-size: 2rem;
+        padding-bottom: 1%;
+    }
+
+     .admin-form input {
+       width: 100%;
+       font-size: 2rem;
+       line-height: 2;
+       border: 3px solid #606060;
+       margin-bottom: 1rem;
+       padding-left: 1rem;
+       align-items: center;
+     }

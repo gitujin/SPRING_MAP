@@ -25,20 +25,30 @@
 
 <main>
     <div class="inner">
+        <form th:action th:object="${storeForm}" method="post">
         <div class="signin-container">
             <h2>관리자 페이지_업체 추가</h2>
-            <div class="signin-form">
+            <div class="admin-form">
                 <div class="category">카테고리</div>
-                <input type="text" id="category" />
+                <select name="category" class="select" th:value="*{category}">
+                    <option disabled selected>카테고리 선택</option>
+                    <option value="allGasStation" th:selected="*{category}=='전체 주유소'">전체 주유소</option>
+                    <option value="payBackGas" th:selected="*{category}=='페이백 주유소'">페이백 주유소</option>
+                    <option value="noPayBack" th:selected="*{category}=='페이백 제외 업체'">페이백 제외 업체</option>
+                </select>
 
                 <div class="store-name">가게 이름</div>
-                <input type="text" id="store-name" />
+                <input type="text" id="store-name" th:field="*{name}" class="form-control"
+                    th:errorclass="field-error"/>
+                <div class="field-error" th:errors="*{name}"></div>
 
                 <div class="address">주소</div>
-                <input type="text" id="address" />
+                <input type="text" id="address" th:field="*{address}" class="form-control"
+                       th:errorclass="field-error"/>
+                <div class="field-error" th:errors="*{address}"></div>
 
                 <div class="bt_add">
-                    <a href="adminAdd.html" class="on">추가하기</a>
+                    <button type="submit" class="add">등록</button>
                 </div>
 
                 <!-- signup-container -->
@@ -46,6 +56,7 @@
             <!-- signin-form -->
         </div>
         <!-- signin-container -->
+        </form>
     </div>
 </main>
 
