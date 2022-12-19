@@ -16,9 +16,6 @@
     <div class="inner">
         <div class="nav-container">
             <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-            <button class="nav-join">
-                <a href="./signin.html">로그인/회원가입</a>
-            </button>
         </div>
     </div>
 </nav>
@@ -38,9 +35,9 @@
                 </select>
 
                 <div class="store-name">가게 이름</div>
-                <input type="text" id="store-name" th:field="*{name}" class="form-control"
+                <input type="text" id="store-name" th:field="*{title}" class="form-control"
                     th:errorclass="field-error"/>
-                <div class="field-error" th:errors="*{name}"></div>
+                <div class="field-error" th:errors="*{title}"></div>
 
                 <div class="address">주소</div>
                 <input type="text" id="address" th:field="*{address}" class="form-control"

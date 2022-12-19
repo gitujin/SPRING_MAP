@@ -2,6 +2,7 @@ package diroumMap.diroumspring.controller.admin;
 
 import diroumMap.diroumspring.Repository.StoreRepository;
 import diroumMap.diroumspring.controller.SessionConst;
+import diroumMap.diroumspring.domain.Store;
 import diroumMap.diroumspring.domain.User;
 import diroumMap.diroumspring.service.StoreService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -40,7 +42,7 @@ public class StoreController {
     }
 
     @PostMapping("/storeAdd")
-    public String storeAdd(@Valid @ModelAttribute StoreForm storeForm, BindingResult bindingResult){
+    public String storeAdd(@Valid @ModelAttribute StoreForm storeForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "admin/adminAdd";
@@ -48,8 +50,43 @@ public class StoreController {
 
         storeService.storeAdd(storeForm.getCategory(), storeForm.getTitle(), storeForm.getAddress());
 
-        return "redirect:/admin";
+        return "redirect:/admin/adminList";
     }
 
+    /**
+     * 업체 수정
+     */
+    @GetMapping("/{storeId}/edit")
+    public String editStore(@PathVariable Long storeId, Model model){
 
+        Store store = storeService.findOne(storeId).orElseThrow();
+
+        StoreForm storeForm = new StoreForm();
+        storeForm.setCategory(store.getCategory());
+        storeForm.setTitle(store.getTitle());
+        storeForm.setAddress(store.getAddress());
+
+        model.addAttribute("storeForm", storeForm);
+        model.addAttribute("storeId", storeId);
+
+        return "admin/adminEdit";
+    }
+
+    @PostMapping("/{storeId}/edit")
+    public String edit(@PathVariable Long storeId, @Valid @ModelAttribute StoreForm storeForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            log.info("errors = {}", bindingResult);
+            return "admin/editEdit";
+        }
+
+        storeService.updateStore(storeId, storeForm.getCategory(), storeForm.getTitle(), storeForm.getAddress());
+
+        return "redirect:/admin/{storeId}";
+    }
+
+    @PostMapping("/{storeId}/delete")
+    public String delete(@PathVariable Long storeId){
+        storeService.deleteById(storeId);
+        return "redirect:/admin";
+    }
 }

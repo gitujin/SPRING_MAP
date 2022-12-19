@@ -591,16 +591,16 @@
      font-weight: 600;
    }
 
-   .board_edit .name {
-     width: 15%;
+   .board_edit .title {
+     width: 30%;
    }
 
-   .board_edit .top .name {
+   .board_edit .top .title {
      text-align: center;
    }
 
    .board_edit .address {
-     width: 55%;
+     width: 40%;
    }
 
    .board_edit .category {

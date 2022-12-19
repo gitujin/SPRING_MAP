@@ -58,14 +58,12 @@
       </div>
     </div>
     <div class="bt_wrap">
-
       <form th:action="@{/board/{postId}/delete(postId=${post.id})}" method="post">
         <button th:onclick="|location.href='@{/board}'|" type="button" class="on">목록</button>
         <button th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|"
                  type="button">수정</button>
         <button type="submit">삭제</button>
       </form>
-
     </div>
   </div>
 </div>
