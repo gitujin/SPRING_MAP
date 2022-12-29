@@ -40,6 +40,7 @@ public class BoardController {
         log.info("postView");
 
         Board board = boardService.selectBoardDetail(postId);
+        model.addAttribute("board", board);
 
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);

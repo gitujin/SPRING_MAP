@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LoginService {
     private final UserRepository userRepository;
 
-    /*
+    /**
     * 로그인
     * @return null 로그인 실패
     */

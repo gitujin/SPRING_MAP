@@ -5,7 +5,7 @@
 var container = document.getElementById('map');
 var options = {
 center: new kakao.maps.LatLng(35.9479447,126.9575551),
-level: 8
+level: 6
 };
 
 var map = new kakao.maps.Map(container, options);
@@ -25,23 +25,25 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 2. 더미데이터 준비하기 (제목, 주소, 카테고리)
 */
 
-const dataSet = [
-    {
-        title: "싱글벙글주유소",
-        address: "전북 익산시 익산대로 343",
-        category: "페이백 주유소",
-    },
-    {
-        title: "금마 하나로마트",
-        address: "전북 익산시 금마면 금마길 37",
-        category: "페이백 안되는 곳",
-    },
-    {
-        title: "서동공원주유소",
-        address: "전라북도 익산시 금마면 고도길 150",
-        category: "페이백 주유소",
-    },
-];
+async function getDataSet(category){
+    let qs = category;
+    if(!qs) {
+        qs="";
+    }
+
+    const dataSet = await axios({
+        method: "get",
+        url: `http://43.200.230.3:3001/Dairoum?category=${qs}`,
+        headers: {},
+        data: {},
+    });
+
+    console.log(dataSet);
+
+    return dataSet.data.result;
+}
+
+getDataSet();
 
 /*
 3. 여러개 마커 찍기
@@ -66,8 +68,6 @@ function getCoordsByAddress(address){
     });
 }
 
-//setMap(dataSet);
-
 /*
 4. 마커에 인포윈도우 붙이기
 */
@@ -75,12 +75,21 @@ function getCoordsByAddress(address){
 async function setMap(dataSet){
     for (let value of dataSet) {
 
+    var imageSrc = `https://i.ibb.co/X73nkP6/map-marker-1.png`, // 마커이미지의 주소입니다
+    imageSize = new kakao.maps.Size(40, 40); // 마커이미지의 크기입니다
+    //imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+    markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
         // 마커를 생성합니다
         let coords = await getCoordsByAddress(value.address);
 
         let marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
+       map: map, // 마커를 표시할 지도
         position: coords, // 마커를 표시할 위치
+        image:markerImage
         });
 
         markerArray.push(marker);
@@ -90,7 +99,7 @@ async function setMap(dataSet){
         position: coords,
         clickable: true,
         xAnchor: 0.5,
-        yAnchor: 1.4
+        yAnchor: 1.3
     });
 
     // 커스텀 오버레이 엘리먼트를 만들고, 컨텐츠를 추가합니다
@@ -113,18 +122,22 @@ async function setMap(dataSet){
 
     customOverlay.setContent(contentsHead);
 
+    customOverlayArray.push(customOverlay);
+
     kakao.maps.event.addListener(marker, "click", () => {
         if (this.clickedOveray) {
           this.clickedOveray.setMap(null);
         }
         customOverlay.setMap(map);
         this.clickedOveray = customOverlay;
+        // 클릭한 곳으로 중심 옮기기
         map.panTo(coords);
-      })
+      });
       kakao.maps.event.addListener(map, "click", function () {
         customOverlay.setMap(null);
-      })
+      });
     }
+
 }
 
 /*
@@ -135,34 +148,33 @@ async function setMap(dataSet){
 const categoryMap = {
     allGasStation : "전체 주유소",
     payBackGas : "페이백 주유소",
-    noPayBack : "페이백 안되는 곳",
+    noPayBack : "페이백 제외 지점",
 };
 
 const categoryList = document.querySelector(".category-list");
 categoryList.addEventListener("click", categoryHandler);
 
-function categoryHandler(event){
+async function categoryHandler(event){ //카테고리 클릭했을 때
+
     const categoryId = event.target.id;
     const category = categoryMap[categoryId];
 
+    try {
     // 데이터 분류
-    let categorizedDataSet = []; // 카테고리 누르면 category에 맞는 데이터 들어감
-    for (let data of dataSet){
-        if(data.category === category) {
-            categorizedDataSet.push(data);
-        }
-    }
+    let categorizedDataSet = await getDataSet(category);
 
     // 기존 마커 삭제
     closeMarker();
 
-    // 기존 인포윈도우 닫기
-    kakao.maps.event.addListener(map, "click", function () {
-        customOverlay.setMap(null);
-    });
+    // 인포윈도우 삭제
+    closeCustomArr();
+
 
     setMap(categorizedDataSet);
 
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 let markerArray = [];
@@ -170,4 +182,10 @@ function closeMarker(){
     for(marker of markerArray){
         marker.setMap(null);
     }
+}
+
+let customOverlayArray = [];
+function closeCustomArr(){
+    for(customOverlay of customOverlayArray)
+    customOverlay.setMap(null);
 }

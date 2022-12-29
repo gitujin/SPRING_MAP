@@ -1,6 +1,8 @@
 package diroumMap.diroumspring.Repository;
 
+import diroumMap.diroumspring.domain.Store;
 import diroumMap.diroumspring.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -34,4 +36,11 @@ public class UserRepository {
                 .getResultList();
         return result.stream().findAny();
     }
+
+//    public Long delete(Long id) {
+//        em.createQuery("delete from User u where u.id = id", User.class)
+//                .setParameter("id", id)
+//                .executeUpdate();
+//        return id;
+//    }
 }

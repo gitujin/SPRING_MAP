@@ -87,6 +87,6 @@ public class StoreController {
     @PostMapping("/{storeId}/delete")
     public String delete(@PathVariable Long storeId){
         storeService.deleteById(storeId);
-        return "redirect:/admin";
+        return "redirect:/admin/adminList";
     }
 }

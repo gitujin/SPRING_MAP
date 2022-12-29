@@ -49,8 +49,9 @@
                     <button class="category-item1" id="allGasStation">전체 주유소</button>
                     <button class="category-item1" id="payBackGas">페이백 주유소</button>
                     <button class="category-item1" id="noPayBack">페이백 제외 지점</button>
-                    <button class="category-item1" id="BOARD">자유 게시판</button>
-                    <button class="category-item1" id="management" th:onclick="|location.href='@{/admin/userList}'|">관리자 페이지</button>
+                    <button class="category-item1" id="BOARD" type="button"
+                            th:onclick="|location.href='@{/board}'|">자유 게시판</button>
+                    <button class="category-item1" id="management" th:onclick="|location.href='@{/admin/users/userList}'|">관리자 페이지</button>
                 </div>
             </div>
         </div>

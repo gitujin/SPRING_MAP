@@ -46,4 +46,11 @@ public class UserService {
     public Optional<User> findOne(Long id){
         return userRepository.findOne(id);
     }
+
+    /**
+     * 회원 삭제
+     */
+//    public Long delete(Long id){
+//        return userRepository.delete(id);
+//    }
 }

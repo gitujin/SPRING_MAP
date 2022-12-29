@@ -51,6 +51,12 @@
                value="작성자" th:text="${post.registerDate}" readonly></div>
         </div>
 
+        <div class="info1">
+          <dt>조회수</dt>
+          <div type="text" id="clickEvent" name="clickEvent" class="form-control"
+               value="조회수" th:text="${board.count}" readonly></div>
+        </div>
+
       </div>
       <div class="cont">
         <div class="form-control" rows="5" id="postContent" name="postContent"
