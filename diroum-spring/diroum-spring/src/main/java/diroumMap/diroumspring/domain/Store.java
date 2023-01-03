@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -36,7 +34,7 @@ public class Store {
     private String createAt;
 
     @Builder
-    public Store(String title, String address, String category,LocalDateTime createAt){
+    public Store(String title, String address, String category, LocalDateTime createAt){
         this.title = title;
         this.address = address;
         this.category = category;

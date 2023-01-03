@@ -1,6 +1,9 @@
 package diroumMap.diroumspring.store;
 
+import com.querydsl.core.Tuple;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import diroumMap.diroumspring.Repository.StoreRepository;
+import diroumMap.diroumspring.domain.QStore;
 import diroumMap.diroumspring.domain.Store;
 import diroumMap.diroumspring.domain.User;
 import diroumMap.diroumspring.service.StoreService;
@@ -11,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,3 +67,4 @@ public class StoreServiceTest {
     }
 
 }
+

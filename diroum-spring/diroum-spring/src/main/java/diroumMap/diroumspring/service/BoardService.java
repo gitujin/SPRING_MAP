@@ -29,7 +29,7 @@ public class BoardService {
     */
     @Transactional
     public Long register(String title, String content, Long userId){
-        User user = userRepository.findOne(userId).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         Board board = Board.createBoard(title, content, user);
         boardRepository.save(board);

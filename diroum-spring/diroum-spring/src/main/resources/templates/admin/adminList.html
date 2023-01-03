@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="store : ${storeList}">
+            <tr th:each="store : ${resultMap.list}">
                 <td width="30%" class="title" th:text="${store.title}">안녕하세요</td>
                 <td width="40%" class="address" th:text="${store.address}">2022.12.04</td>
                 <td width="15%" class="category" th:text="${store.category}">123</td>
@@ -57,16 +57,14 @@
         </table>
 
         <div class="board_page">
-            <a href="#" class="bt first"><<</a>
-            <a href="#" class="bt prev"><</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="bt next">></a>
-            <a href="#" class="bt last">>></a>
+
+            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
+                <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/admin/adminList/(page = ${page-1})}" th:text="${page}"></a>
+            </th:block>
+
         </div>
+
         <div class="bt_add">
             <button th:onclick="|location.href='@{/admin/storeAdd}'|" type="button" class="add">추가</button>
             <!-- <a href="#">수정</a> -->

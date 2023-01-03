@@ -33,7 +33,7 @@ async function getDataSet(category){
 
     const dataSet = await axios({
         method: "get",
-        url: `http://43.200.230.3:3001/Dairoum?category=${qs}`,
+        url: 'http://localhost:8080/Dairoum?category=${qs}',
         headers: {},
         data: {},
     });

@@ -7,6 +7,9 @@ import diroumMap.diroumspring.domain.User;
 import diroumMap.diroumspring.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,13 +26,14 @@ public class StoreController {
 
     private final StoreService storeService;
 
-
     /**
      * 업체 리스트
      */
     @GetMapping("/adminList")
-    public String storeList(Model model){
-        model.addAttribute("storeList",storeService.findAll());
+    public String storeList(Model model,
+                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+
+        model.addAttribute("resultMap",storeService.findAll(pageable));
         return "admin/adminList";
     }
 

@@ -1,14 +1,19 @@
 package diroumMap.diroumspring.service;
 
+import com.querydsl.core.Tuple;
 import diroumMap.diroumspring.Repository.StoreRepository;
 import diroumMap.diroumspring.Repository.UserRepository;
+import diroumMap.diroumspring.domain.Board;
 import diroumMap.diroumspring.domain.Store;
 import diroumMap.diroumspring.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +39,23 @@ public class StoreService {
     /**
      * 업체 전체 조회
      */
-    public List<Store> findAll(){
-        return storeRepository.findAll();
+    /*
+     * 업체 전체 조회
+     */
+    public HashMap<String, Object> findAll(Pageable page){
+        HashMap<String, Object> listMap = new HashMap<>();
+        Page<Store> list = storeRepository.findAll(page);
+
+        listMap.put("list", list);
+        listMap.put("paging", list.getPageable());
+        listMap.put("totalCnt", list.getTotalElements());
+        listMap.put("totalPage", list.getTotalPages());
+
+        listMap.put("nowPage", list.getPageable().getPageNumber() + 1);
+        listMap.put("startPage", Math.max(1,list.getPageable().getPageNumber() - 4));
+        listMap.put("endPage", Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 5));
+
+        return listMap;
     }
 
     /**
