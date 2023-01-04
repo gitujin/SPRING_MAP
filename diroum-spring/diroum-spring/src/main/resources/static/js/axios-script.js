@@ -25,22 +25,35 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 2. 더미데이터 준비하기 (제목, 주소, 카테고리)
 */
 
-async function getDataSet(category){
-    let qs = category;
+async function getDataSet(categoryId){
+    let qs = categoryId;
     if(!qs) {
         qs="";
     }
 
-    const dataSet = await axios({
-        method: "get",
-        url: 'http://localhost:8080/Dairoum?category=${qs}',
-        headers: {},
-        data: {},
-    });
+    var dataSet;
+
+    $.ajax({
+        url : "http://localhost:8080/Dairoum?category=" + qs,
+        type : "get",
+        async : false,
+        dataType : "json",
+        success : function (data){
+            console.log(data);
+            dataSet = data;
+        }
+    })
+
+//    const dataSet = await axios({
+//        method: "get",
+//        url: 'http://localhost:8080/Dairoum?category=${qs}',
+//        headers: {},
+//        data: {},
+//    });
 
     console.log(dataSet);
 
-    return dataSet.data.result;
+    return dataSet;
 }
 
 getDataSet();
@@ -157,11 +170,15 @@ categoryList.addEventListener("click", categoryHandler);
 async function categoryHandler(event){ //카테고리 클릭했을 때
 
     const categoryId = event.target.id;
+        console.log(categoryId);
+
     const category = categoryMap[categoryId];
+        console.log(category);
+
 
     try {
     // 데이터 분류
-    let categorizedDataSet = await getDataSet(category);
+    let categorizedDataSet = await getDataSet(categoryId);
 
     // 기존 마커 삭제
     closeMarker();

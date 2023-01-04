@@ -1,12 +1,14 @@
 package diroumMap.diroumspring.service;
 
 import com.querydsl.core.Tuple;
+import diroumMap.diroumspring.Repository.StoreInterface;
 import diroumMap.diroumspring.Repository.StoreRepository;
 import diroumMap.diroumspring.Repository.UserRepository;
 import diroumMap.diroumspring.domain.Board;
 import diroumMap.diroumspring.domain.Store;
 import diroumMap.diroumspring.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StoreService {
 
+    @Autowired
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
 
@@ -37,9 +40,6 @@ public class StoreService {
     }
 
     /**
-     * 업체 전체 조회
-     */
-    /*
      * 업체 전체 조회
      */
     public HashMap<String, Object> findAll(Pageable page){
@@ -80,5 +80,12 @@ public class StoreService {
     @Transactional
     public void deleteById(Long id){
         storeRepository.deleteById(id);
+    }
+
+    /**
+     * 카테고리 별 업체 조회
+     */
+    public List<StoreInterface> findCategorized(String category){
+        return storeRepository.findByCategorized(category); //카테고리 별 지점
     }
 }

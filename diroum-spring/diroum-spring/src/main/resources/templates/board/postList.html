@@ -41,9 +41,7 @@
             <tbody>
                 <tr th:each="list,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
                     <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>
-                    <td class="title"><a th:href="@{/board/{postId}(postId=${list.id})}"
-                                            th:text="${list.title}">제목</a></td>
-
+                    <td class="title"><a th:href="@{/board/{postId}(postId=${list.id})}" th:text="${list.title}">제목</a></td>
                     <td class="writer" th:text="${list.user.loginId}">작성자</td>
                     <td class="date" th:text="${list.registerDate}">작성일</td>
                     <td class="views" th:text="${list.count}">조회수</td>
