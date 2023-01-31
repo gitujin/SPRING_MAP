@@ -1,4 +1,4 @@
-package diroumMap.diroumspring.web.controller.login;
+package diroumMap.diroumspring.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 
 @Getter @Setter
-public class UserLoginForm {
+public class UserLoginDto {
 
     @NotBlank
     private String loginId;

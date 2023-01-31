@@ -1,4 +1,4 @@
-package diroumMap.diroumspring.web.controller;
+package diroumMap.diroumspring.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 
 @Getter @Setter
-public class UserForm {
+public class UserDto {
 
     @NotBlank(message = "아이디는 필수입니다.")
     private String loginId;

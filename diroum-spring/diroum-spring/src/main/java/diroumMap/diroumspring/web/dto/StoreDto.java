@@ -1,4 +1,4 @@
-package diroumMap.diroumspring.web.controller.admin;
+package diroumMap.diroumspring.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 @Getter @Setter
-public class StoreForm {
+public class StoreDto {
 
     @NotNull
     private String category;

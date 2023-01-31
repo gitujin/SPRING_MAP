@@ -2,6 +2,7 @@ package diroumMap.diroumspring.web.controller.login;
 
 import diroumMap.diroumspring.web.controller.SessionConst;
 import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.dto.UserLoginDto;
 import diroumMap.diroumspring.web.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +25,12 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/users/login") //로그인 버튼 누르면 로그인 창으로
-    public String loginForm(@ModelAttribute("loginForm") UserLoginForm loginForm){
+    public String loginForm(@ModelAttribute("loginForm") UserLoginDto loginForm){
         return "login/loginForm";
     }
 
     @PostMapping("/users/login")
-    public String login(@Valid @ModelAttribute("loginForm") UserLoginForm loginForm,
+    public String login(@Valid @ModelAttribute("loginForm") UserLoginDto loginForm,
                         BindingResult bindingResult, HttpServletRequest request,
                         @RequestParam(defaultValue = "/") String redirectURL){
 

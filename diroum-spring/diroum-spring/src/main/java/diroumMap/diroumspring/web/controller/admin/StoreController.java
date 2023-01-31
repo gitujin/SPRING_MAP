@@ -1,6 +1,7 @@
 package diroumMap.diroumspring.web.controller.admin;
 
 import diroumMap.diroumspring.web.domain.Store;
+import diroumMap.diroumspring.web.dto.StoreDto;
 import diroumMap.diroumspring.web.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -59,12 +59,12 @@ public class StoreController {
      * 업체 추가
      */
     @GetMapping("/storeAdd")
-    public String adminAdd(@ModelAttribute StoreForm storeForm){
+    public String adminAdd(@ModelAttribute StoreDto storeForm){
         return "admin/adminAdd";
     }
 
     @PostMapping("/storeAdd")
-    public String storeAdd(@Valid @ModelAttribute StoreForm storeForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String storeAdd(@Valid @ModelAttribute StoreDto storeForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "admin/adminAdd";
@@ -83,7 +83,7 @@ public class StoreController {
 
         Store store = storeService.findOne(storeId).orElseThrow();
 
-        StoreForm storeForm = new StoreForm();
+        StoreDto storeForm = new StoreDto();
         storeForm.setCategory(store.getCategory());
         storeForm.setTitle(store.getTitle());
         storeForm.setAddress(store.getAddress());
@@ -98,7 +98,7 @@ public class StoreController {
      * 업체 수정
      */
     @PostMapping("/{storeId}/edit")
-    public String edit(@PathVariable Long storeId, @Valid @ModelAttribute StoreForm storeForm, BindingResult bindingResult){
+    public String edit(@PathVariable Long storeId, @Valid @ModelAttribute StoreDto storeForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             log.info("errors = {}", bindingResult);
             return "admin/editEdit";

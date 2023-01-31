@@ -3,6 +3,7 @@ package diroumMap.diroumspring.web.controller.board;
 import diroumMap.diroumspring.web.controller.SessionConst;
 import diroumMap.diroumspring.web.domain.Board;
 import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,12 +50,12 @@ public class BoardController {
 
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute PostForm postForm)  {
+    public String registerForm(@ModelAttribute PostDto postForm)  {
         return "board/registerForm";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute PostForm postForm, BindingResult bindingResult, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, RedirectAttributes redirectAttributes) {
+    public String register(@Valid @ModelAttribute PostDto postForm, BindingResult bindingResult, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, RedirectAttributes redirectAttributes) {
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
@@ -72,7 +73,7 @@ public class BoardController {
 
         Board post = boardService.findOne(postId).orElseThrow();
 
-        PostForm postForm = new PostForm();
+        PostDto postForm = new PostDto();
         postForm.setTitle(post.getTitle());
         postForm.setContent(post.getContent());
 
@@ -83,7 +84,7 @@ public class BoardController {
     }
 
     @PostMapping("/{postId}/edit")
-    public String edit(@PathVariable Long postId, @Valid @ModelAttribute PostForm postForm, BindingResult bindingResult){
+    public String edit(@PathVariable Long postId, @Valid @ModelAttribute PostDto postForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
