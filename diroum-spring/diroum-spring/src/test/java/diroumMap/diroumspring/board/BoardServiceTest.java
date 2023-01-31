@@ -1,9 +1,9 @@
 package diroumMap.diroumspring.board;
 
-import diroumMap.diroumspring.Repository.BoardRepository;
-import diroumMap.diroumspring.domain.Board;
-import diroumMap.diroumspring.domain.User;
-import diroumMap.diroumspring.service.BoardService;
+import diroumMap.diroumspring.web.repository.BoardRepository;
+import diroumMap.diroumspring.web.domain.Board;
+import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

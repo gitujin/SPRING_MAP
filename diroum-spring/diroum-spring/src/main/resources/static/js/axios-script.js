@@ -44,13 +44,6 @@ async function getDataSet(categoryId){
         }
     })
 
-//    const dataSet = await axios({
-//        method: "get",
-//        url: 'http://localhost:8080/Dairoum?category=${qs}',
-//        headers: {},
-//        data: {},
-//    });
-
     console.log(dataSet);
 
     return dataSet;
@@ -86,6 +79,9 @@ function getCoordsByAddress(address){
 */
 
 async function setMap(dataSet){
+
+    let a=0;
+
     for (let value of dataSet) {
 
     var imageSrc = `https://i.ibb.co/X73nkP6/map-marker-1.png`, // 마커이미지의 주소입니다
@@ -100,12 +96,15 @@ async function setMap(dataSet){
         let coords = await getCoordsByAddress(value.address);
 
         let marker = new kakao.maps.Marker({
-       map: map, // 마커를 표시할 지도
+        map: map, // 마커를 표시할 지도
         position: coords, // 마커를 표시할 위치
         image:markerImage
         });
 
         markerArray.push(marker);
+
+        a = a+1;
+        console.log(a);
 
     // 커스텀 오버레이를 생성합니다
     let customOverlay = new kakao.maps.CustomOverlay({

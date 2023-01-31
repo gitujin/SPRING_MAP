@@ -277,6 +277,37 @@
     background: #fff;
   }
 
+  .bt_search{
+      padding : 10px;
+      text-align: center;
+      font-size: 0;
+  }
+
+  .bt_search input{
+    width : 200px;
+    height : 30px;
+    margin-right : 10px;
+  }
+
+
+
+  .bt_search button {
+      display: inline-block;
+      width: 50px;
+      height: 10px
+      margin-left: 30px;
+      padding: 5px;
+      border: 1px solid #000;
+      border-radius:  2px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #fff;
+      }
+
+  .bt_search .search_btn:hover{
+    color: black;
+    cursor:pointer;
+  }
 
   .bt_wrap button:first-child {
     margin-left: 0;
@@ -286,6 +317,7 @@
     background: #000;
     color: #fff;
   }
+
 
   .board_list {
     width: 100%;
@@ -711,6 +743,13 @@
    }
 
    /* 관리자 페이지 카테고리 */
+   .category-list{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+   }
+
    .board2_title{
      margin-top: 40px;
    }

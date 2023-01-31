@@ -27,7 +27,7 @@
             <button class="category-item2" type="button"
                     th:onclick="|location.href='@{/admin/users/userList}'|">유저 관리로 이동</button>
             <div class="bt_search">
-                <form action="/adminList" method="GET" class="search-form" role="search" accept-charset="utf-8">
+                <form action="/store/search" method="GET" class="search-form" role="search">
                     <input type="text" name="keyword" class="form-control" id="search" placeholder="검색하기">
                     <button class="search_btn">검색</button>
                 </form>
@@ -39,12 +39,12 @@
 
         <table class="board_edit">
             <thead>
-                <tr class="top">
-                    <th width="30%" class="title">이름</th>
-                    <th width="40%" class="address">주소</th>
-                    <th width="15%" class="category">카테고리</th>
-                    <th width="15%" class="management">관리</th>
-                </tr>
+            <tr class="top">
+                <th width="30%" class="title">이름</th>
+                <th width="40%" class="address">주소</th>
+                <th width="15%" class="category">카테고리</th>
+                <th width="15%" class="management">관리</th>
+            </tr>
             </thead>
             <tbody>
             <tr th:each="store : ${resultMap.list}">
@@ -54,7 +54,7 @@
                 <td>
                     <form th:action="@{/admin/{storeId}/delete(storeId=${store.id})}" method="post">
                         <button th:onclick="|location.href='@{/admin/{storeId}/edit(storeId=${store.id})}'|"
-                        type="button">수정</button>
+                                type="button">수정</button>
                         <button class="btn_delete" type="submit">삭제</button>
                     </form>
                 </td>

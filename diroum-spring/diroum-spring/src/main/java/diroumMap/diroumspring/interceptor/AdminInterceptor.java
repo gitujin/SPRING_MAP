@@ -1,10 +1,6 @@
 package diroumMap.diroumspring.interceptor;
 
-import diroumMap.diroumspring.controller.SessionConst;
-import diroumMap.diroumspring.domain.User;
-import diroumMap.diroumspring.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;

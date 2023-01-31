@@ -1,6 +1,6 @@
 package diroumMap.diroumspring.interceptor;
 
-import diroumMap.diroumspring.controller.SessionConst;
+import diroumMap.diroumspring.web.controller.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 

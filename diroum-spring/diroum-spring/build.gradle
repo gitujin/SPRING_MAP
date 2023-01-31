@@ -44,7 +44,10 @@ dependencies {
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
+	// Security
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//
+//	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
 }
 
 tasks.named('test') {

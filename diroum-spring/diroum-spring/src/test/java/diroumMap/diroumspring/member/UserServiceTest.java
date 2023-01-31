@@ -1,7 +1,7 @@
 package diroumMap.diroumspring.member;
 
-import diroumMap.diroumspring.domain.User;
-import diroumMap.diroumspring.service.UserService;
+import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
