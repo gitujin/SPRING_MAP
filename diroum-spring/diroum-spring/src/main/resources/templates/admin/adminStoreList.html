@@ -27,8 +27,8 @@
             <button class="category-item2" type="button"
                     th:onclick="|location.href='@{/admin/users/userList}'|">유저 관리로 이동</button>
             <div class="bt_search">
-                <form action="/adminList" method="GET" class="search-form" role="search" accept-charset="utf-8">
-                    <input type="text" name="keyword" class="form-control" id="search" placeholder="검색하기">
+                <form th:action="@{/admin/store}" method="GET" class="search-form" role="search" accept-charset="utf-8">
+                    <input type="text" name="keyword" class="form-control" id="search" placeholder="업체 검색하기">
                     <button class="search_btn">검색</button>
                 </form>
             </div>
@@ -47,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="store : ${resultMap.list}">
+            <tr th:each="store : ${list}">
                 <td width="30%" class="title" th:text="${store.title}">안녕하세요</td>
                 <td width="40%" class="address" th:text="${store.address}">2022.12.04</td>
                 <td width="15%" class="category" th:text="${store.category}">123</td>
@@ -64,9 +64,9 @@
 
         <div class="board_page">
 
-            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
                 <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
-                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/admin/adminList/(page = ${page-1})}" th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/admin/store/(page = ${page-1}, keyword = ${param.keyword})}" th:text="${page}"></a>
             </th:block>
 
         </div>

@@ -50,19 +50,19 @@ public class BoardController {
 
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute PostDto postForm)  {
+    public String registerForm(@ModelAttribute PostDto postDto)  {
         return "board/registerForm";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute PostDto postForm, BindingResult bindingResult, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, RedirectAttributes redirectAttributes) {
+    public String register(@Valid @ModelAttribute PostDto postDto, BindingResult bindingResult, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, RedirectAttributes redirectAttributes) {
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "board/registerForm";
         }
 
-        Long registerId = boardService.register(postForm.getTitle(), postForm.getContent(), loginUser.getId());
+        Long registerId = boardService.register(postDto.getTitle(), postDto.getContent(), loginUser.getId());
         redirectAttributes.addAttribute("postId", registerId);
 
         return "redirect:/board";
@@ -73,25 +73,25 @@ public class BoardController {
 
         Board post = boardService.findOne(postId).orElseThrow();
 
-        PostDto postForm = new PostDto();
-        postForm.setTitle(post.getTitle());
-        postForm.setContent(post.getContent());
+        PostDto postDto = new PostDto();
+        postDto.setTitle(post.getTitle());
+        postDto.setContent(post.getContent());
 
-        model.addAttribute("postForm", postForm);
+        model.addAttribute("postDto", postDto);
         model.addAttribute("postId", postId);
 
         return "board/editForm";
     }
 
     @PostMapping("/{postId}/edit")
-    public String edit(@PathVariable Long postId, @Valid @ModelAttribute PostDto postForm, BindingResult bindingResult){
+    public String edit(@PathVariable Long postId, @Valid @ModelAttribute PostDto postDto, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "board/editForm";
         }
 
-        boardService.updateBoard(postId, postForm.getTitle(), postForm.getContent());
+        boardService.updateBoard(postId, postDto.getTitle(), postDto.getContent());
 
         return "redirect:/board/{postId}";
     }

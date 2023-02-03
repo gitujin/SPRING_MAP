@@ -47,8 +47,6 @@ public class Board {
         this.registerDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(registerDate);
     }
 
-
-
     // 생성 메서드
     public static Board createBoard(String title, String content, User user){
         return Board.builder()
@@ -64,7 +62,7 @@ public class Board {
     }
 
     public Board updateViewCount(Long viewCount){
-        this.count = viewCount+1;
+        this.count = viewCount + 1;
         return this;
     }
 

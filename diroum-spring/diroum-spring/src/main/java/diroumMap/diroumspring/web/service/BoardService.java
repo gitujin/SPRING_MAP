@@ -37,6 +37,7 @@ public class BoardService {
     * 게시판 전체 조회
     */
     public HashMap<String, Object> findAll(Pageable page){
+
         HashMap<String, Object> listMap = new HashMap<>();
         Page<Board> list = boardRepository.findAll(page);
 

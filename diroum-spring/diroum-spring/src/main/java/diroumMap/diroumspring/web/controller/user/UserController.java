@@ -1,4 +1,4 @@
-package diroumMap.diroumspring.web.controller;
+package diroumMap.diroumspring.web.controller.user;
 
 import diroumMap.diroumspring.web.domain.User;
 import diroumMap.diroumspring.web.dto.UserDto;

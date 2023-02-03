@@ -1,4 +1,4 @@
-package diroumMap.diroumspring.web.controller.login;
+package diroumMap.diroumspring.web.controller.user.login;
 
 import diroumMap.diroumspring.web.controller.SessionConst;
 import diroumMap.diroumspring.web.domain.User;
@@ -25,12 +25,12 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/users/login") //로그인 버튼 누르면 로그인 창으로
-    public String loginForm(@ModelAttribute("loginForm") UserLoginDto loginForm){
+    public String loginForm(@ModelAttribute("loginForm") UserLoginDto userLoginDto){
         return "login/loginForm";
     }
 
     @PostMapping("/users/login")
-    public String login(@Valid @ModelAttribute("loginForm") UserLoginDto loginForm,
+    public String login(@Valid @ModelAttribute("loginForm") UserLoginDto userLoginDto,
                         BindingResult bindingResult, HttpServletRequest request,
                         @RequestParam(defaultValue = "/") String redirectURL){
 
@@ -39,7 +39,7 @@ public class LoginController {
             return "login/loginForm";
         }
 
-        User loginUser = loginService.login(loginForm.getLoginId(),loginForm.getPassword());
+        User loginUser = loginService.login(userLoginDto.getLoginId(),userLoginDto.getPassword());
         System.out.println("loginUser = " + loginUser);
 
         if (loginUser == null){

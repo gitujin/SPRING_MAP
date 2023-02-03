@@ -15,12 +15,16 @@ public class PageResultDTO<DTO,EN> {
     //DTO리스트
     private List<DTO> dtoList;
 
+    //총 페이지 번호
     private int totalPage;
 
+    //현재 페이지 번호
     private int page;
 
+    //목록 사이즈
     private int size;
 
+    // 시작페이지, 끝페이지 번호
     private int start, end;
 
     private boolean prev, next;
