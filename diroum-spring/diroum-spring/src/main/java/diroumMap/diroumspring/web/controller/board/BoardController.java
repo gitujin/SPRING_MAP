@@ -2,7 +2,7 @@ package diroumMap.diroumspring.web.controller.board;
 
 import diroumMap.diroumspring.web.controller.SessionConst;
 import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.domain.users.User;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.service.BoardService;
 import lombok.RequiredArgsConstructor;

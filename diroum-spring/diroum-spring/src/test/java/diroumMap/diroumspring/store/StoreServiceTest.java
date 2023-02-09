@@ -2,7 +2,7 @@ package diroumMap.diroumspring.store;
 
 import diroumMap.diroumspring.web.repository.StoreRepository;
 import diroumMap.diroumspring.web.domain.Store;
-import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.domain.users.User;
 import diroumMap.diroumspring.web.service.StoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

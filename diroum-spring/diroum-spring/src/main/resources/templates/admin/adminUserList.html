@@ -51,7 +51,7 @@
                 <td width="10%" class="name" th:text="${user.name}">송유진</td>
                 <td width="10%" class="loginId" th:text="${user.loginId}">syj9471</td>
                 <td width="10%" class="age" th:text="${user.age}">24</td>
-                <td width="10%" class="verify" th:text="${user.verify}">0</td>
+                <td width="10%" class="verify" th:text="${user.userRole}">0</td>
 
                 <form th:action="@{/admin/users/{userId}/delete(userId=${user.id})}" method="post">
                     <td>

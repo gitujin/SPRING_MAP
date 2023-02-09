@@ -1,8 +1,9 @@
 package diroumMap.diroumspring.web.controller.user.login;
 
 import diroumMap.diroumspring.web.controller.SessionConst;
-import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.domain.users.User;
 import diroumMap.diroumspring.web.dto.UserLoginDto;
+import diroumMap.diroumspring.web.domain.users.UserRole;
 import diroumMap.diroumspring.web.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +50,7 @@ public class LoginController {
 
         }
 
-        int verify = loginUser.getVerify();
+        UserRole verify = loginUser.getUserRole();
         System.out.println("verify = " + verify);
 
         // 로그인 성공
@@ -58,7 +59,7 @@ public class LoginController {
 
         // 세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_USER, loginUser);
-        session.setAttribute("LOGIN_VERIFY",verify);
+        session.setAttribute("LOGIN_VERIFY", verify);
 
 
         return "redirect:" + redirectURL;

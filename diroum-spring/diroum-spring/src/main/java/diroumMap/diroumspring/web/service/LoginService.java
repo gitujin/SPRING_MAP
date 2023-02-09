@@ -1,7 +1,7 @@
 package diroumMap.diroumspring.web.service;
 
 import diroumMap.diroumspring.web.repository.UserRepository;
-import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.domain.users.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

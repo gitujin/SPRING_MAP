@@ -1,6 +1,7 @@
 package diroumMap.diroumspring.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import diroumMap.diroumspring.web.domain.users.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Entity
 @Getter

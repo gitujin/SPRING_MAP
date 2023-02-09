@@ -1,6 +1,7 @@
 package diroumMap.diroumspring.web.controller;
 
-import diroumMap.diroumspring.web.domain.User;
+import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ public class HomeController {
             return "home";
         }
 
-        if(loginUser.getVerify() == 9){
+        if(loginUser.getUserRole() == UserRole.ROLE_ADMIN){
             model.addAttribute("user", loginUser);
             return "adminHome";
         }

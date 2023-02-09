@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static diroumMap.diroumspring.web.domain.users.UserRole.ROLE_ADMIN;
+
 @Slf4j
 public class AdminInterceptor implements HandlerInterceptor {
 
@@ -16,10 +18,10 @@ public class AdminInterceptor implements HandlerInterceptor {
         String requestURI = req.getRequestURI();
         HttpSession session = req.getSession();
 
-        int userVerify = (int) session.getAttribute("LOGIN_VERIFY");
+        Object userVerify = session.getAttribute("LOGIN_VERIFY");
         System.out.println("userVerify = " + userVerify);
 
-        if(userVerify != 9) {
+        if(userVerify != ROLE_ADMIN) {
             res.sendRedirect("/users/login?redirectURL=" + requestURI);
             return false;
         }
