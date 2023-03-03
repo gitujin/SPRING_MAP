@@ -5,7 +5,7 @@
 var container = document.getElementById('map');
 var options = {
 center: new kakao.maps.LatLng(35.9479447,126.9575551),
-level: 6
+level: 7
 };
 
 var map = new kakao.maps.Map(container, options);
@@ -39,12 +39,12 @@ async function getDataSet(categoryId){
         async : false,
         dataType : "json",
         success : function (data){
-            console.log(data);
+            console.log("1", data);
             dataSet = data;
         }
     })
 
-    console.log(dataSet);
+    console.log("2", dataSet);
 
     return dataSet;
 }
@@ -65,9 +65,9 @@ function getCoordsByAddress(address){
         geocoder.addressSearch(address,function(result,status){
             //정상적으로 검색이 완료됐으면
             if(status === kakao.maps.services.Status.OK) {
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            resolve(coords);
-            return;
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                resolve(coords);
+                return;
             }
             reject(new Error("getCoordsByAddress Error: not Vaild Address"))
         });
@@ -96,15 +96,14 @@ async function setMap(dataSet){
         let coords = await getCoordsByAddress(value.address);
 
         let marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: coords, // 마커를 표시할 위치
-        image:markerImage
-        });
+                map: map, // 마커를 표시할 지도
+                position: coords, // 마커를 표시할 위치
+                image:markerImage
+                });
 
         markerArray.push(marker);
-
-        a = a+1;
-        console.log(a);
+        //a = a+1;
+        //console.log("3", a);
 
     // 커스텀 오버레이를 생성합니다
     let customOverlay = new kakao.maps.CustomOverlay({
@@ -149,10 +148,19 @@ async function setMap(dataSet){
         customOverlay.setMap(null);
       });
     }
+    console.log("markerArray: ",markerArray);
+
+    let clusterer = new kakao.maps.MarkerClusterer({
+         map: map,
+         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+         minLevel: 6 // 클러스터 할 최소 지도 레벨
+        });
+
+    clusterer.addMarkers(markerArray);
 
 }
 
-/*
+/**
 5. 카테고리 분류
 */
 
@@ -169,10 +177,10 @@ categoryList.addEventListener("click", categoryHandler);
 async function categoryHandler(event){ //카테고리 클릭했을 때
 
     const categoryId = event.target.id;
-        console.log(categoryId);
+        console.log("3", categoryId);
 
     const category = categoryMap[categoryId];
-        console.log(category);
+        console.log("4", category);
 
 
     try {
@@ -185,6 +193,7 @@ async function categoryHandler(event){ //카테고리 클릭했을 때
     // 인포윈도우 삭제
     closeCustomArr();
 
+    closeClusterer();
 
     setMap(categorizedDataSet);
 
@@ -205,3 +214,35 @@ function closeCustomArr(){
     for(customOverlay of customOverlayArray)
     customOverlay.setMap(null);
 }
+
+let clustererArray = [];
+function closeClusterer(){
+    for(clusterer of clustererArray)
+    clusterer.clear();
+}
+
+/**
+6. 마커 클러스터러 사용하기
+*/
+/*
+    // 마커 클러스터러를 생성합니다
+    let clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10 // 클러스터 할 최소 지도 레벨
+    });
+
+    // 데이터를 가져오기 위해 jQuery를 사용합니다
+    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+    $.get("http://localhost:8080/Dairoum?category=" + qs, function(data) {
+        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+        let markers = $(data.positions).map(function(i, position) {
+            return new kakao.maps.Marker({
+                position : new kakao.maps.LatLng(position.lat, position.lng)
+            });
+        });
+
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+    });*/

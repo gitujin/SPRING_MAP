@@ -1,7 +1,7 @@
 package diroumMap.diroumspring.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private Users users;
 
     private String registerDate;
 
@@ -39,18 +39,18 @@ public class Board {
     private Long count;
 
     @Builder
-    public Board(String title, String content, User user, LocalDateTime registerDate, Long count) {
+    public Board(String title, String content, Users users, LocalDateTime registerDate, Long count) {
         this.title = title;
         this.content = content;
-        this.user = user;
+        this.users = users;
         this.count = count;
         this.registerDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(registerDate);
     }
 
     // 생성 메서드
-    public static Board createBoard(String title, String content, User user){
+    public static Board createBoard(String title, String content, Users users){
         return Board.builder()
-                .title(title).content(content).user(user)
+                .title(title).content(content).users(users)
                 .registerDate(LocalDateTime.now())
                 .build();
     }

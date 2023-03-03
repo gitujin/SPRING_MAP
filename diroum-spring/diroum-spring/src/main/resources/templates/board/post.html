@@ -42,7 +42,7 @@
         <div class="info1">
           <dt>글쓴이</dt>
           <div type="text" id="writer" name="postTitle" class="form-control"
-               value="작성자" th:text="${post.user.loginId}" readonly></div>
+               value="작성자" th:text="${post.users.loginId}" readonly></div>
         </div>
 
         <div class="info1">
@@ -67,7 +67,7 @@
     <div class="bt_wrap">
       <form th:action="@{/board/{postId}/delete(postId=${post.id})}" method="post">
         <button th:onclick="|location.href='@{/board}'|" type="button" class="on">목록</button>
-<!--        <div th:lf="${post.user.loginId} == ${user.loginId}">-->
+<!--        <div th:lf="${post.users.loginId} == ${users.loginId}">-->
           <button th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|"
                    type="button">수정</button>
           <button type="submit">삭제</button>

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Table(name="users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User{
+public class Users {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -30,7 +30,7 @@ public class User{
     private UserRole userRole;
 
     @Builder
-    public User(String loginId, String password, String name, int age, UserRole userRole) {
+    public Users(String loginId, String password, String name, int age, UserRole userRole) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
@@ -38,15 +38,15 @@ public class User{
         this.userRole = userRole;
     }
 
-    public static User createUser(SignUpFormDto signUpUserDto, PasswordEncoder passwordEncoder){
-        User user = User.builder()
+    public static Users createUser(SignUpFormDto signUpUserDto, PasswordEncoder passwordEncoder) {
+        Users users = Users.builder()
                 .loginId(signUpUserDto.getLoginId())
                 .password(passwordEncoder.encode(signUpUserDto.getPassword()))
                 .name(signUpUserDto.getName())
                 .age(signUpUserDto.getAge())
                 .userRole(UserRole.ROLE_USER)
                 .build();
-        return user;
+        return users;
     }
 
 }

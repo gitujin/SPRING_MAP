@@ -1,7 +1,7 @@
 package diroumMap.diroumspring.member;
 
 import diroumMap.diroumspring.config.WebSecurityConfig;
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-class UserServiceTest {
+class UsersServiceTest {
 
     @Autowired
     UserService userService;
@@ -24,13 +24,13 @@ class UserServiceTest {
     @Test
     void 회원가입(){
         //given
-        User user = User.builder().loginId("userA").build();
+        Users users = Users.builder().loginId("userA").build();
 
         //when
-        Long joinId = userService.join(user);
+        Long joinId = userService.join(users);
 
         //then
-        assertThat(user).isEqualTo(userService.findOne(joinId).orElseThrow());
+        assertThat(users).isEqualTo(userService.findOne(joinId).orElseThrow());
     }
 
     @Test
@@ -81,12 +81,12 @@ class UserServiceTest {
     @Test
     void 중복_회원_예외() throws Exception {
         //given
-        User user1 = User.builder().loginId("userA").build();
-        User user2 = User.builder().loginId("userA").build();
+        Users users1 = Users.builder().loginId("userA").build();
+        Users users2 = Users.builder().loginId("userA").build();
 
         //when
-        userService.join(user1);
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> userService.join(user2));
+        userService.join(users1);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> userService.join(users2));
 
         //then
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 아이디입니다.");

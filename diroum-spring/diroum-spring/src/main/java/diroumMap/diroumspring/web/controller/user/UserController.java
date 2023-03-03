@@ -1,6 +1,6 @@
 package diroumMap.diroumspring.web.controller.user;
 
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.SignUpFormDto;
 import diroumMap.diroumspring.web.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,28 +12,27 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-/*    @Autowired
-    PasswordEncoder passwordEncoder;*/
-
-    @GetMapping("/users/join")
-    public String signupForm(@ModelAttribute SignUpFormDto signUpUserDto) {
+    @GetMapping("/join")
+    public String signupForm(@ModelAttribute("signUpFormDto") SignUpFormDto signUpFormDto) {
         log.info("signupForm");
         return "users/signupForm";
     }
 
-    @PostMapping("/users/join")
-    public String signup(@Valid @ModelAttribute SignUpFormDto signUpUserDto, BindingResult bindingResult, Model model) {
+    @PostMapping("/join")
+    public String signup(@Valid @ModelAttribute SignUpFormDto signUpFormDto, BindingResult bindingResult, Model model) {
 
         log.info("signup");
 
@@ -43,15 +42,15 @@ public class UserController {
         }
 
         try {
-            User user = User.createUser(signUpUserDto, passwordEncoder);
-            userService.join(user);
+            Users users = Users.createUser(signUpFormDto, passwordEncoder);
+            userService.join(users);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "users/signupForm";
         }
 
         log.info("signup success");
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
 }

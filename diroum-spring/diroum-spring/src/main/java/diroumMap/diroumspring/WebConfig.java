@@ -1,3 +1,4 @@
+/*
 package diroumMap.diroumspring;
 
 import diroumMap.diroumspring.interceptor.AdminInterceptor;
@@ -24,3 +25,4 @@ public class WebConfig implements WebMvcConfigurer {
 
     }
 }
+*/

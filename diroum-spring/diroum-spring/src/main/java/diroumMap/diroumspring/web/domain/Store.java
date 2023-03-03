@@ -1,6 +1,6 @@
 package diroumMap.diroumspring.web.domain;
 
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +27,7 @@ public class Store {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users users;
 
     private String createAt;
 

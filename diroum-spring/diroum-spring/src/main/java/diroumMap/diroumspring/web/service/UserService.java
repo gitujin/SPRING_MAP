@@ -1,7 +1,7 @@
 package diroumMap.diroumspring.web.service;
 
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.repository.UserRepository;
-import diroumMap.diroumspring.web.domain.users.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,17 +27,17 @@ public class UserService {
     * 회원 가입
     */
     @Transactional
-    public Long join(User user) {
-        validateDuplicateLoginId(user); //중복 로그인 아이디 검증
-        userRepository.save(user);
-        return user.getId();
+    public Long join(Users users) {
+        validateDuplicateLoginId(users); //중복 로그인 아이디 검증
+        userRepository.save(users);
+        return users.getId();
     }
 
     /**
      * 중복 로그인 아이디 검증
      */
-    private void validateDuplicateLoginId(User user) {
-        userRepository.findByLoginId(user.getLoginId())
+    private void validateDuplicateLoginId(Users users) {
+        userRepository.findByLoginId(users.getLoginId())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 아이디입니다.");
                 });
@@ -48,7 +48,7 @@ public class UserService {
      */
     public HashMap<String, Object> findAll(Pageable page){
         HashMap<String, Object> listMap = new HashMap<>();
-        Page<User> list = userRepository.findAll(page);
+        Page<Users> list = userRepository.findAll(page);
 
         listMap.put("list", list);
         listMap.put("paging", list.getPageable());
@@ -65,8 +65,15 @@ public class UserService {
     /**
      *  회원 단건 조회
      */
-    public Optional<User> findOne(Long id){
+    public Optional<Users> findOne(Long id){
         return userRepository.findById(id);
+    }
+
+    /**
+     *  회원 아이디 조회
+     */
+    public Optional<Users> findByLoginId(String loginId){
+        return userRepository.findByLoginId(loginId);
     }
 
     /**

@@ -18,12 +18,13 @@
         <div class="nav-container">
 
             <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
+
             <div class="sign-container">
                 <!-- 회원 -->
                 <div class="signed">
                     <div class="dropdown">
                         <div class="dropdown-button">
-                            안녕하세요. <span th:text="|${user.loginId}|"></span>님.
+                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
                         </div>
                         <form th:action="@{/logout}" method="post">
                             <div class="dropdown-content">
@@ -65,9 +66,9 @@
 </main>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e13ffd8f4a2493c9908639e5b9fe61c&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e13ffd8f4a2493c9908639e5b9fe61c&libraries=services,clusterer,drawing"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/axios-script.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>

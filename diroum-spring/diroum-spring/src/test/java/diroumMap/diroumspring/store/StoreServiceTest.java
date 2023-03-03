@@ -2,7 +2,7 @@ package diroumMap.diroumspring.store;
 
 import diroumMap.diroumspring.web.repository.StoreRepository;
 import diroumMap.diroumspring.web.domain.Store;
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.service.StoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ public class StoreServiceTest {
     @Test
     public void storeAdd() {
         //given
-        User user = User.builder().loginId("admin").build();
-        em.persist(user);
+        Users users = Users.builder().loginId("admin").build();
+        em.persist(users);
 
         //when
         Long addId = storeService.storeAdd("AAA", "BBB","CCC");
@@ -46,8 +46,8 @@ public class StoreServiceTest {
     @Test
     public void updateStore(){
         //given
-        User user = User.builder().loginId("admin").build();
-        em.persist(user);
+        Users users = Users.builder().loginId("admin").build();
+        em.persist(users);
         Long addId = storeService.storeAdd("AAA", "BBB","CCC");
 
         //when

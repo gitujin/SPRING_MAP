@@ -1,8 +1,9 @@
 package diroumMap.diroumspring.board;
 
-import diroumMap.diroumspring.web.repository.BoardRepository;
 import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
+import diroumMap.diroumspring.web.dto.PostDto;
+import diroumMap.diroumspring.web.repository.BoardRepository;
 import diroumMap.diroumspring.web.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,34 +18,37 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class BoardServiceTest {
 
-    @Autowired BoardService boardService;
-    @Autowired BoardRepository boardRepository;
-    @Autowired EntityManager em;
+    @Autowired
+    BoardService boardService;
+    @Autowired
+    BoardRepository boardRepository;
+    @Autowired
+    EntityManager em;
 
     @Test
     public void register(){
         //given
-        User user = User.builder().loginId("userA").build();
-        em.persist(user);
+        Users users = Users.builder().loginId("userA").build();
+        em.persist(users);
 
         //when
-        Long registerId = boardService.register("AAA","BBB", user.getId());
+        Long registerId = boardService.register("AAA","BBB", users.getId());
 
         //then
         Board board = boardRepository.findById(registerId).orElseThrow();
 
         assertThat(board.getTitle()).isEqualTo("AAA");
         assertThat(board.getContent()).isEqualTo("BBB");
-        assertThat(board.getUser()).isEqualTo(user);
+        assertThat(board.getUsers()).isEqualTo(users);
 
     }
 
     @Test
     public void updateBoard() {
         //given
-        User user = User.builder().loginId("userA").build();
-        em.persist(user);
-        Long registerId = boardService.register("AAA", "BBB", user.getId());
+        Users users = Users.builder().loginId("userA").build();
+        em.persist(users);
+        Long registerId = boardService.register("AAA", "BBB", users.getId());
 
         //when
         boardService.updateBoard(registerId, "CCC", "DDD");
@@ -54,6 +58,6 @@ class BoardServiceTest {
 
         assertThat(board.getTitle()).isEqualTo("CCC");
         assertThat(board.getContent()).isEqualTo("DDD");
-        assertThat(board.getUser()).isEqualTo(user);
+        assertThat(board.getUsers()).isEqualTo(users);
     }
 }

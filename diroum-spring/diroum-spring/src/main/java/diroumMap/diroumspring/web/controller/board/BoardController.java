@@ -1,8 +1,8 @@
 package diroumMap.diroumspring.web.controller.board;
 
-import diroumMap.diroumspring.web.controller.SessionConst;
+import diroumMap.diroumspring.security.UsersAdapter;
 import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,30 +43,38 @@ public class BoardController {
     public String postView(@PathVariable Long postId, Model model) {
         log.info("postView");
 
+        // 조회수
         Board board = boardService.selectBoardDetail(postId);
         model.addAttribute("board", board);
 
+        // 상세보기
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
 
         return "board/post";
     }
 
-
+    /**
+     * 글쓰기
+     */
     @GetMapping("/register")
     public String registerForm(@ModelAttribute PostDto postDto)  {
         return "board/registerForm";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute PostDto postDto, BindingResult bindingResult, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, RedirectAttributes redirectAttributes) {
+    public String register(@ModelAttribute PostDto postDto, BindingResult bindingResult,
+                           @AuthenticationPrincipal UsersAdapter usersAdapter,
+                           RedirectAttributes redirectAttributes) {
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "board/registerForm";
         }
 
-        Long registerId = boardService.register(postDto.getTitle(), postDto.getContent(), loginUser.getId());
+        Users users = usersAdapter.getUsers();
+
+        Long registerId = boardService.register(postDto.getTitle(),postDto.getContent(), users.getId());
         redirectAttributes.addAttribute("postId", registerId);
 
         return "redirect:/board";
@@ -72,7 +84,6 @@ public class BoardController {
     public String editForm(@PathVariable Long postId, Model model){
 
         Board post = boardService.findOne(postId).orElseThrow();
-
         PostDto postDto = new PostDto();
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());

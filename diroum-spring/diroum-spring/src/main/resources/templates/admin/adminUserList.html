@@ -45,15 +45,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
+            <tr th:each="users,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
                 <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>
-                <td width="10%" class="userId" th:text="${user.id}">13</td>
-                <td width="10%" class="name" th:text="${user.name}">송유진</td>
-                <td width="10%" class="loginId" th:text="${user.loginId}">syj9471</td>
-                <td width="10%" class="age" th:text="${user.age}">24</td>
-                <td width="10%" class="verify" th:text="${user.userRole}">0</td>
+                <td width="10%" class="userId" th:text="${users.id}">13</td>
+                <td width="10%" class="name" th:text="${users.name}">송유진</td>
+                <td width="10%" class="loginId" th:text="${users.loginId}">syj9471</td>
+                <td width="10%" class="age" th:text="${users.age}">24</td>
+                <td width="10%" class="verify" th:text="${users.userRole}">0</td>
 
-                <form th:action="@{/admin/users/{userId}/delete(userId=${user.id})}" method="post">
+                <form th:action="@{/admin/users/{userId}/delete(userId=${users.id})}" method="post">
                     <td>
                         <button class="btn_delete" type="submit">삭제</button>
                     </td>
@@ -67,7 +67,8 @@
 
             <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
                 <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
-                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/board/(page = ${page-1})}" th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}"
+                   th:href="@{/admin/users/userList(page = ${page-1})}" th:text="${page}"></a>
             </th:block>
 
         </div>

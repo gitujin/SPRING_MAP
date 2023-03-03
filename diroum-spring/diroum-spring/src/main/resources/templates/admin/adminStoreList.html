@@ -66,7 +66,8 @@
 
             <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
                 <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
-                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/admin/store/(page = ${page-1}, keyword = ${param.keyword})}" th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}"
+                   th:href="@{/admin/store/(page = ${page-1}, keyword = ${param.keyword})}" th:text="${page}"></a>
             </th:block>
 
         </div>

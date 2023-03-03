@@ -1,6 +1,6 @@
 package diroumMap.diroumspring.security;
 
-import diroumMap.diroumspring.web.domain.users.User;
+import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,20 +23,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-        User user = userRepository.findByLoginId(loginId)
+        Users users = userRepository.findByLoginId(loginId)
                 .orElseThrow(()->new UsernameNotFoundException(loginId + "는 존재하지 않는 ID 입니다."));
 
-        return createUserDetails(user);
+        return new UsersAdapter(users);
     }
 
-    private UserDetails createUserDetails(User user) {
-
-        return new org.springframework.security.core.userdetails.User(
-                String.valueOf(user.getId()),
-                user.getPassword(),
-                List.of(new SimpleGrantedAuthority(user.getUserRole().toString()))
-        );
-
-    }
 }
-

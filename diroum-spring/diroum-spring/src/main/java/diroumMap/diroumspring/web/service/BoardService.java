@@ -1,9 +1,10 @@
 package diroumMap.diroumspring.web.service;
 
+import diroumMap.diroumspring.web.domain.users.Users;
+import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.repository.BoardRepository;
 import diroumMap.diroumspring.web.repository.UserRepository;
 import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.users.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,25 +22,28 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
 
-    /*
+    /**
     *  게시글 작성
     */
     @Transactional
     public Long register(String title, String content, Long userId){
-        User user = userRepository.findById(userId).orElseThrow();
+        Users users = userRepository.findById(userId).orElseThrow();
+        System.out.println("users = " + users); //users = diroumMap.diroumspring.web.domain.users.Users@44972e0
 
-        Board board = Board.createBoard(title, content, user);
+        Board board = Board.createBoard(title, content, users);
         boardRepository.save(board);
         return board.getId();
     }
 
-    /*
+    /**
     * 게시판 전체 조회
     */
+
     public HashMap<String, Object> findAll(Pageable page){
 
         HashMap<String, Object> listMap = new HashMap<>();
         Page<Board> list = boardRepository.findAll(page);
+        System.out.println("list = " + list);
 
         listMap.put("list", list);
         listMap.put("paging", list.getPageable());
@@ -53,14 +57,14 @@ public class BoardService {
         return listMap;
     }
 
-    /*
+    /**
     *  게시글 단건 조회
     */
     public Optional<Board> findOne(Long id){
         return boardRepository.findById(id);
     }
 
-    /*
+    /**
     * 게시글 수정
     */
     @Transactional
@@ -69,15 +73,15 @@ public class BoardService {
         board.update(title, content);
     }
 
-    /*
-    * 게시글 삭제
-    */
+    /**
+     * 게시글 삭제
+     */
     @Transactional
     public void deleteById(Long id){
         boardRepository.deleteById(id);
     }
 
-    /*
+    /**
      * 게시글 조회수
      */
     @Transactional
@@ -86,5 +90,7 @@ public class BoardService {
         board.updateViewCount(board.getCount());
         return board;
     }
+
+
 }
 
