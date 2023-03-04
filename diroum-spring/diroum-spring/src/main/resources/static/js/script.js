@@ -21,6 +21,7 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+
 /*
 2. 더미데이터 준비하기 (제목, 주소, 카테고리)
 */
@@ -102,6 +103,7 @@ async function setMap(dataSet){
                 });
 
         markerArray.push(marker);
+        markers.push(marker);
         //a = a+1;
         //console.log("3", a);
 
@@ -144,19 +146,16 @@ async function setMap(dataSet){
         // 클릭한 곳으로 중심 옮기기
         map.panTo(coords);
       });
-      kakao.maps.event.addListener(map, "click", function () {
+
+    kakao.maps.event.addListener(map, "click", function () {
         customOverlay.setMap(null);
       });
     }
     console.log("markerArray: ",markerArray);
 
-    let clusterer = new kakao.maps.MarkerClusterer({
-         map: map,
-         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-         minLevel: 6 // 클러스터 할 최소 지도 레벨
-        });
+    console.log("markers: ", markers);
+    clusterer.addMarkers(markers);
 
-    clusterer.addMarkers(markerArray);
 
 }
 
@@ -193,6 +192,7 @@ async function categoryHandler(event){ //카테고리 클릭했을 때
     // 인포윈도우 삭제
     closeCustomArr();
 
+    // 기존 클러스터러 삭제
     closeClusterer();
 
     setMap(categorizedDataSet);
@@ -215,34 +215,18 @@ function closeCustomArr(){
     customOverlay.setMap(null);
 }
 
-let clustererArray = [];
+let markers = [];
 function closeClusterer(){
-    for(clusterer of clustererArray)
+    markers.length=0;
     clusterer.clear();
+
 }
 
 /**
 6. 마커 클러스터러 사용하기
 */
-/*
-    // 마커 클러스터러를 생성합니다
     let clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-        minLevel: 10 // 클러스터 할 최소 지도 레벨
-    });
-
-    // 데이터를 가져오기 위해 jQuery를 사용합니다
-    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-    $.get("http://localhost:8080/Dairoum?category=" + qs, function(data) {
-        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        let markers = $(data.positions).map(function(i, position) {
-            return new kakao.maps.Marker({
-                position : new kakao.maps.LatLng(position.lat, position.lng)
-            });
+         map: map,
+         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+         minLevel: 6 // 클러스터 할 최소 지도 레벨
         });
-
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
-    });*/
