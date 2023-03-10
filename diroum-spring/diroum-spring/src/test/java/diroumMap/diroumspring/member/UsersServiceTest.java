@@ -22,7 +22,8 @@ class UsersServiceTest {
     WebSecurityConfig webSecurityConfig;
 
     @Test
-    void 회원가입(){
+    @DisplayName("회원가입 테스트")
+    void joinTest(){
         //given
         Users users = Users.builder().loginId("userA").build();
 

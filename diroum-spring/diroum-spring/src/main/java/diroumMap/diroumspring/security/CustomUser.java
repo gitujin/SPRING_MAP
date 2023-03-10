@@ -3,12 +3,14 @@ package diroumMap.diroumspring.security;
 import diroumMap.diroumspring.web.domain.users.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.*;
 
 public class CustomUser implements UserDetails {
 
     private Users users;
+    private Map<String, Object> attributes;
 
     /* 일반 로그인 생성자 */
     public CustomUser(Users users){
@@ -60,5 +62,6 @@ public class CustomUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }

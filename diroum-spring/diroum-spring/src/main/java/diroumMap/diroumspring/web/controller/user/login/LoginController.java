@@ -7,6 +7,7 @@ import diroumMap.diroumspring.web.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +23,21 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/users/login") //로그인 버튼 누르면 로그인 창으로
-    public String loginForm(@ModelAttribute("loginForm") UserLoginDto userLoginDto){
+    public String loginForm(@ModelAttribute("loginForm") UserLoginDto userLoginDto,
+                            @RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "exception", required = false) String exception, Model model){
+
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
         return "login/loginForm";
     }
 
+/*
     @PostMapping("/users/login")
     public String login(@Valid @ModelAttribute("loginForm") UserLoginDto userLoginDto,
                         BindingResult bindingResult, HttpServletRequest request,
                         @RequestParam(defaultValue = "/") String redirectURL){
-
-        System.out.println("loginController");
 
         if(bindingResult.hasErrors()){ // 에러 났을 때
             log.info("error = {}", bindingResult);
@@ -45,7 +51,6 @@ public class LoginController {
             log.info("login Fail");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
-
         }
 
         UserRole verify = loginUsers.getUserRole();
@@ -60,6 +65,7 @@ public class LoginController {
 
         return "redirect:" + redirectURL;
     }
+*/
 
     @PostMapping("/logout")
     public String logout(HttpServletRequest request){

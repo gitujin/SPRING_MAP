@@ -17,14 +17,4 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/users/home")
-    public String loginPage(HttpServletRequest req){
-        return "loginHome";
-    }
-
-    @GetMapping("/admin/home")
-    public String adminPage(){
-        return "adminHome";
-    }
-
 }

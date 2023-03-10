@@ -16,6 +16,23 @@
     <div class="inner">
         <div class="nav-container">
             <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
+
+            <div class="sign-container">
+                <!-- 회원 -->
+                <div class="signed">
+                    <div class="dropdown">
+                        <div class="dropdown-button">
+                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
+                        </div>
+                        <form th:action="@{/logout}" method="post">
+                            <div class="dropdown-content">
+                                <button type="submit" id="sign-out">로그아웃</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </nav>
@@ -27,6 +44,7 @@
                 <h2>관리자 페이지_업체 수정</h2>
                 <div class="admin-form">
                     <div class="category">카테고리</div>
+
                     <select name="category" class="select" th:value="*{category}">
                         <option disabled selected>카테고리 선택</option>
                         <option value="allGasStation" th:selected="*{category}=='전체 주유소'">전체 주유소</option>
@@ -46,7 +64,7 @@
 
                     <div class="bt_wrap">
                         <button type="submit" class="on">수정완료</button>
-                        <button th:onclick="|location.href='/admin/adminList'|" type="button">취소</button>
+                        <button th:onclick="|location.href='/admin/store'|" type="button">취소</button>
                     </div>
 
                     <!-- signup-container -->

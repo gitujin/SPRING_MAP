@@ -177,7 +177,7 @@
   #signin,
   input#signup {
     padding-left: 0;
-    background: #4aa8d8;
+    background: #9ACD32;
     border: none;
     color: white;
     cursor: pointer;
@@ -192,6 +192,7 @@
   .signup-container {
     width: 100%;
     text-align: center;
+    margin-bottom:2rem;
   }
 
   #signup {
@@ -199,6 +200,14 @@
     color: black;
     font-size: 2rem;
     text-decoration: none;
+  }
+
+ /* 소셜 로그인 */
+  .login-container{
+    display:grid;
+    margin-top:2rem;
+    position: relative;
+    text-align: center;
   }
 
    .bt_add {
@@ -227,8 +236,6 @@
       background: #000;
       color: #fff;
    }
-
-
 
   a {
     text-decoration: none;
@@ -268,7 +275,7 @@
   .bt_wrap button {
     display: inline-block;
     min-width: 80px;
-    margin-left: 10px;
+    margin-right: 10px;
     padding: 10px;
     border: 1px solid #000;
     border-radius:  2px;
@@ -286,26 +293,25 @@
   .bt_search input{
     width : 200px;
     height : 30px;
-    margin-right : 10px;
+    margin-right : 1px;
   }
-
-
 
   .bt_search button {
       display: inline-block;
       width: 50px;
-      height: 10px
-      margin-left: 30px;
+      height: 30px;
+      margin-left: 10px;
       padding: 5px;
       border: 1px solid #000;
       border-radius:  2px;
-      font-size: 1rem;
+      font-size: 1.3rem;
       cursor: pointer;
-      background: #fff;
+      background: black;
+      color: white;
       }
 
   .bt_search .search_btn:hover{
-    color: black;
+    color: green;
     cursor:pointer;
   }
 
@@ -724,7 +730,7 @@
    /* 관리자 홈페이지 */
    .category-item1 {
      color: black;
-     width: 19%;
+     width: 200px;
      height: 8rem;
      background: none;
      border: none;
@@ -798,7 +804,7 @@
      border-radius: 3px;
      font-size: 1.4rem;
      cursor: pointer;
-     text-align: center;F
+     text-align: center;
    }
 
    .bt_add .add:first-child {

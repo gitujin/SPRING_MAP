@@ -29,6 +29,9 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
+    private String provider; //oauth2를 이용할 경우 어떤 플랫폼을 이용하는지
+    private String providerId; // oauth2를 이용할 경우 아이디 값
+
     @Builder
     public Users(String loginId, String password, String name, int age, UserRole userRole) {
         this.loginId = loginId;
@@ -37,6 +40,15 @@ public class Users {
         this.age = age;
         this.userRole = userRole;
     }
+
+    @Builder(builderClassName = "OAuth2Register", builderMethodName = "oauth2Register")
+    public Users(String loginId, UserRole userrole, String provider, String providerId){
+        this.loginId = loginId;
+        this.userRole = userrole;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
 
     public static Users createUser(SignUpFormDto signUpUserDto, PasswordEncoder passwordEncoder) {
         Users users = Users.builder()

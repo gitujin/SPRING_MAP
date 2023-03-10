@@ -26,14 +26,6 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
         System.out.println("roleNames = " + roleNames);
         System.out.println("ac = " + ac);
 
-        if(roleNames.contains("ROLE_ADMIN")) {
-            response.sendRedirect("/admin/home");
-            return;
-        }
-        if (roleNames.contains("ROLE_USER")) {
-            response.sendRedirect("/users/home");
-            return;
-        }
         response.sendRedirect("/");
     }
 }

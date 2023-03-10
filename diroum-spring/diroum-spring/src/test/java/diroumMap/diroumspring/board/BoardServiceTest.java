@@ -5,6 +5,7 @@ import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.repository.BoardRepository;
 import diroumMap.diroumspring.web.service.BoardService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,7 @@ class BoardServiceTest {
     EntityManager em;
 
     @Test
+    @DisplayName("글 작성 테스트")
     public void register(){
         //given
         Users users = Users.builder().loginId("userA").build();
@@ -44,6 +46,7 @@ class BoardServiceTest {
     }
 
     @Test
+    @DisplayName("글 수정 테스트")
     public void updateBoard() {
         //given
         Users users = Users.builder().loginId("userA").build();
@@ -59,5 +62,22 @@ class BoardServiceTest {
         assertThat(board.getTitle()).isEqualTo("CCC");
         assertThat(board.getContent()).isEqualTo("DDD");
         assertThat(board.getUsers()).isEqualTo(users);
+    }
+
+    @Test
+    @DisplayName("글 삭제 테스트")
+    public void deleteBoard(){
+        //given
+        Users users = Users.builder().loginId("userA").build();
+        em.persist(users);
+        Long registerId = boardService.register("AAA","BBB", users.getId());
+
+        //when
+        boardService.deleteById(registerId);
+
+        //then
+        Board board = boardRepository.findById(registerId).orElseThrow();
+
+
     }
 }

@@ -95,7 +95,7 @@ public class StoreService {
     }
 
     /**
-     * 업체 검색 2
+     * 업체 검색
      */
     @Transactional
     public Page<Store> search(String keyword, Pageable pageable) {

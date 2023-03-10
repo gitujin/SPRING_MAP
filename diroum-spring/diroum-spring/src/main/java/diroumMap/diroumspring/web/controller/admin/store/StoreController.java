@@ -73,7 +73,7 @@ public class StoreController {
 
         storeService.storeAdd(storeDto.getCategory(), storeDto.getTitle(), storeDto.getAddress());
 
-        return "redirect:/admin/adminStoreList";
+        return "redirect:/admin/store";
     }
 
     /**
@@ -89,7 +89,7 @@ public class StoreController {
         storeDto.setTitle(store.getTitle());
         storeDto.setAddress(store.getAddress());
 
-        model.addAttribute("storeForm", storeDto);
+        model.addAttribute("storeDto", storeDto);
         model.addAttribute("storeId", storeId);
 
         return "admin/adminEdit";
@@ -107,7 +107,7 @@ public class StoreController {
 
         storeService.updateStore(storeId, storeDto.getCategory(), storeDto.getTitle(), storeDto.getAddress());
 
-        return "redirect:/admin/{storeId}";
+        return "redirect:/admin/store";
     }
 
     /**

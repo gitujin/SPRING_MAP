@@ -1,8 +1,10 @@
 package diroumMap.diroumspring.config;
 
 import diroumMap.diroumspring.security.FormAuthenticationProvider;
+import diroumMap.diroumspring.security.MyLoginFailureHandler;
 import diroumMap.diroumspring.security.MyLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 
 @Configuration
@@ -34,8 +37,8 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/", "/signup", "/users/login", "/logout",
                         "/*.ico", "/resource/**", "/css/**", "/error", "/js/**", "/users/join", "/Dairoum/**").permitAll()
-                .antMatchers("/users/**", "/board/**").hasRole("USER")
-                .antMatchers("/board/**", "/admin/**").hasRole("ADMIN")
+                .antMatchers("/users/**", "/board/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
 
                 .and()
                 //cors방지
@@ -50,8 +53,8 @@ public class WebSecurityConfig {
                 .loginPage("/users/login") // 커스텀 로그인 페이지 설정
                 .usernameParameter("loginId") // form 아이디 파라미터 키 값
                 .passwordParameter("password") // form 비밀번호 파라미터 키 값
-                .successHandler(new MyLoginSuccessHandler());
-
+                .successHandler(new MyLoginSuccessHandler())
+                .failureHandler(new MyLoginFailureHandler()); // 로그인 실패 핸들러
         http.logout()
                 .logoutSuccessUrl("/login") //로그아웃 성공 시 리다이렉트 주소
                 .invalidateHttpSession(true); // 세션 날리기

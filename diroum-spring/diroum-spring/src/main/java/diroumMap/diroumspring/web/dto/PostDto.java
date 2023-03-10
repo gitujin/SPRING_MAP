@@ -25,9 +25,7 @@ public class PostDto {
                 .content(content)
                 .users(users)
                 .build();
-
     }
-
 
 }
 

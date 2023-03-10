@@ -5,7 +5,7 @@
 var container = document.getElementById('map');
 var options = {
 center: new kakao.maps.LatLng(35.9479447,126.9575551),
-level: 7
+level: 9
 };
 
 var map = new kakao.maps.Map(container, options);
@@ -104,8 +104,8 @@ async function setMap(dataSet){
 
         markerArray.push(marker);
         markers.push(marker);
-        //a = a+1;
-        //console.log("3", a);
+
+        //console.log("3", value.address);
 
     // 커스텀 오버레이를 생성합니다
     let customOverlay = new kakao.maps.CustomOverlay({
