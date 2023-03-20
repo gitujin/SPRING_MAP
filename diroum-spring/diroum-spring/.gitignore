@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 application-mysql.properties
 application-jpa.properties
+.DS_store
 
 
 ### STS ###
