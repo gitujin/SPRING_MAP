@@ -42,13 +42,23 @@
     <div class="board_title">
         <strong>자유게시판</strong>
         <p>자유롭게 소통할 수 있는 공간입니다.</p>
+
+        <div class="category-list">
+            <div class="bt_search">
+                <form th:action="@{/board}" method="GET" class="search-form" role="search" accept-charset="utf-8">
+                    <input type="text" name="keyword" class="form-control" id="search" placeholder="글 검색하기">
+                    <button class="search_btn">검색</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 
     <div class="board_list_wrap">
         <table class="board_list">
             <thead>
                 <tr class="top">
-                    <th class="num">번호</th>
+                    <th class="num">글 고유번호</th>
                     <th class="title">제목</th>
                     <th class="writer">글쓴이</th>
                     <th class="date">작성일</th>
@@ -56,12 +66,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="list,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
-                    <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>
-                    <td class="title"><a th:href="@{/board/{postId}(postId=${list.id})}" th:text="${list.title}">제목</a></td>
-                    <td class="writer" th:text="${list.users?.loginId}">작성자</td>
-                    <td class="date" th:text="${list.registerDate}">작성일</td>
-                    <td class="views" th:text="${list.count}">조회수</td>
+                <tr th:each="board:${list}">
+<!--                    <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>-->
+                    <td class="num"><span th:text="${board.id}"></span></td>
+                    <td class="title"><a th:href="@{/board/{postId}(postId=${board.id})}" th:text="${board.title}">제목</a></td>
+                    <td class="writer" th:text="${board.users?.loginId}">작성자</td>
+                    <td class="date" th:text="${board.registerDate}">작성일</td>
+                    <td class="views" th:text="${board.count}">조회수</td>
                 </tr>
 
             </tbody>
@@ -69,9 +80,9 @@
 
         <div class="board_page">
 
-            <th:block th:each="page : ${#numbers.sequence(resultMap.startPage, resultMap.endPage)}">
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
                 <a class="num on" th:if="${page == resultMap.nowPage}"  th:text="${page}"></a>
-                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/board/(page = ${page-1})}" th:text="${page}"></a>
+                <a class="num" th:if="${page != resultMap.nowPage}" th:href="@{/board/(page = ${page-1}, keyword = ${param.keyword})}" th:text="${page}"></a>
             </th:block>
 
         </div>

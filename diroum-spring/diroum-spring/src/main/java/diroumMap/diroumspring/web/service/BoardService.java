@@ -1,5 +1,6 @@
 package diroumMap.diroumspring.web.service;
 
+import diroumMap.diroumspring.web.domain.Store;
 import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.repository.BoardRepository;
@@ -28,7 +29,6 @@ public class BoardService {
     @Transactional
     public Long register(String title, String content, Long userId){
         Users users = userRepository.findById(userId).orElseThrow();
-        System.out.println("users = " + users); //users = diroumMap.diroumspring.web.domain.users.Users@44972e0
 
         Board board = Board.createBoard(title, content, users);
         boardRepository.save(board);
@@ -38,7 +38,6 @@ public class BoardService {
     /**
     * 게시판 전체 조회
     */
-
     public HashMap<String, Object> findAll(Pageable page){
 
         HashMap<String, Object> listMap = new HashMap<>();
@@ -91,6 +90,21 @@ public class BoardService {
         return board;
     }
 
+    /**
+     * 글 검색
+     */
+    @Transactional
+    public Page<Board> search(String keyword, Pageable pageable){
+        Page<Board> boardList = boardRepository.findByTitleContaining(keyword, pageable);
 
+        return boardList;
+    }
+
+    /**
+     * 글 리스트
+     */
+    public Page<Board> boardList(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
 }
 

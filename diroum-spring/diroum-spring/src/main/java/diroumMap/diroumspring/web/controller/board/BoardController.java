@@ -7,6 +7,7 @@ import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -31,8 +32,26 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String postList(Model model,
+    public String postList(String keyword, Model model,
                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<Board> list = null;
+
+        if(keyword == null) {
+            list = boardService.boardList(pageable);
+        } else{
+            list = boardService.search(keyword, pageable);
+        }
+
+        int nowPage = list.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
+        int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
+        int endPage = Math.min(nowPage + 5, list.getTotalPages());
+
+        //BoardService에서 만들어준 boardList가 반환되는데, list라는 이름으로 받아서 넘기겠다는 뜻
+        model.addAttribute("list" , list);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         model.addAttribute("resultMap", boardService.findAll(pageable));
 

@@ -45,13 +45,13 @@ public class StoreController {
         int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
         int endPage = Math.min(nowPage + 5, list.getTotalPages());
 
-        //BoardService에서 만들어준 boardList가 반환되는데, list라는 이름으로 받아서 넘기겠다는 뜻
+        //StoreService에서 만들어준 boardList가 반환되는데, list라는 이름으로 받아서 넘기겠다는 뜻
         model.addAttribute("list" , list);
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        model.addAttribute("resultMap",storeService.findAll(pageable));
+        model.addAttribute("resultMap",storeService.findAll(pageable)); //listMap
 
         return "admin/adminStoreList";
     }
