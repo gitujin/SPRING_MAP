@@ -7,7 +7,7 @@ build/
 application-mysql.properties
 application-jpa.properties
 .DS_store
-
+.idea
 
 ### STS ###
 .apt_generated
