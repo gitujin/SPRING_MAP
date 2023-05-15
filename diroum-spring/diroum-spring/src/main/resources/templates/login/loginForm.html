@@ -20,14 +20,7 @@
 
 <body>
 <nav>
-  <div class="inner">
-    <div class="nav-container">
-      <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-      <button class="nav-join">
-        <a href="/users/login">로그인/회원가입</a>
-      </button>
-    </div>
-  </div>
+  <header th:replace="fragments/header::headerFragment"></header>
 </nav>
 
 <main>
@@ -56,14 +49,6 @@
               <a href="/users/join" id="signup">회원가입</a>
             </div>
 
-<!--            <hr width="100%">
-
-            <div class="login-container">
-              <a href="/oauth2/authorization/google"><img src="/image/google.png"></a>
-              <a href="/oauth2/authorization/naver"><img src="/image/naver.png" width="180" height="42"></a>
-              <a href="/oauth2/authorization/kakao"><img src="/image/kakao.png"></a>
-            </div>-->
-            <!-- signup-container -->
           </div>
 
         </form>

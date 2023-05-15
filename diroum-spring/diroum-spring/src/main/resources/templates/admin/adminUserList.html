@@ -13,28 +13,7 @@
 
 <body>
 <nav>
-    <div class="inner">
-        <div class="nav-container">
-            <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-
-            <div class="sign-container">
-                <!-- 회원 -->
-                <div class="signed">
-                    <div class="dropdown">
-                        <div class="dropdown-button">
-                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
-                        </div>
-                        <form th:action="@{/logout}" method="post">
-                            <div class="dropdown-content">
-                                <button type="submit" id="sign-out">로그아웃</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    <header th:replace="fragments/header::headerFragment"></header>
 </nav>
 
 <div class="inner">
@@ -90,8 +69,8 @@
 
         </div>
 
+    </div>
 </div>
-
 
 </main>
 </body>

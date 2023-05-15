@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div th:fragment="headerFragment" class="inner">
+
+        <div class="inner">
+            <div class="nav-container">
+                <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
+
+                <span sec:authorize="isAnonymous()">
+                    <button class="nav-join" th:onclick="|location.href='@{/users/login}'|">로그인/회원가입</button>
+                </span>
+
+                <span sec:authorize="isAuthenticated()">
+                <div class="sign-container">
+                <!-- 회원 -->
+                <div class="signed">
+                    <div class="dropdown">
+                        <div class="dropdown-button">
+                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
+                        </div>
+                        <form th:action="@{/logout}" method="post">
+                            <div class="dropdown-content">
+                                <button type="submit" id="sign-out">로그아웃</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                </span>
+
+            </div>
+        </div>
+
+    </div>
+
+</html>

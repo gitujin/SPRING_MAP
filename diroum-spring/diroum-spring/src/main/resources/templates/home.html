@@ -14,52 +14,13 @@
 
 <body>
 <nav>
-    <div class="inner">
-        <div class="nav-container">
-            <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-            <span sec:authorize="isAnonymous()">
-                <button class="nav-join" th:onclick="|location.href='@{/users/login}'|">로그인/회원가입</button>
-            </span>
-
-            <span sec:authorize="isAuthenticated()">
-            <div class="sign-container">
-                <!-- 회원 -->
-                <div class="signed">
-                    <div class="dropdown">
-                        <div class="dropdown-button">
-                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
-                        </div>
-                        <form th:action="@{/logout}" method="post">
-                            <div class="dropdown-content">
-                                <button type="submit" id="sign-out">로그아웃</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            </span>
-
-        </div>
-    </div>
+    <header th:replace="fragments/header::headerFragment"></header>
 </nav>
 
 <main>
     <!-- 카테고리 -->
     <section id="category">
-        <div class="inner">
-            <div class="category-container">
-                <h2 class="category-title">원하는 카테고리를 선택해보세요</h2>
-                <div class="category-list">
-                        <button type="button" class="category-item1" id="allGasStation">전체 주유소</button>
-                        <button type="button" class="category-item1" id="payBackGas">페이백 주유소</button>
-                        <button type="button" class="category-item1" id="noPayBack">페이백 제외 지점</button>
-                        <button class="category-item1" id="BOARD" type="button" th:onclick="|location.href='@{/board}'|">자유 게시판</button>
-                    <span sec:authorize="hasRole('ROLE_ADMIN')">
-                        <button class="category-item1" id="management" th:onclick="|location.href='@{/admin/users/userList}'|">관리자 페이지</button>
-                    </span>
-                </div>
-            </div>
-        </div>
+        <div th:replace="fragments/category::categoryFragment"></div>
     </section>
 
     <!-- 카카오지도 -->
@@ -74,7 +35,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e13ffd8f4a2493c9908639e5b9fe61c&libraries=services,clusterer,drawing"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 <script src="/js/script.js"></script>
 
 </body>

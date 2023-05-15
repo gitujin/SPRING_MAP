@@ -1,872 +1,972 @@
 @font-face {
-  font-family: 'MICEGothic Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
   }
 
-  html {
-    font-size: 10px;
-    font-family: "MICEGothic Bold";
-  }
-
-  .nav-container {
-    padding: 2rem 0;
-    display: flex; /* 수평배치 */
-    flex-direction: row; /* 시작방향 글의 작성방향과 동일 */
-    justify-content: space-between; /* 요소 주위에 동일한 격을 둔다*/
-    align-items: center; /* 요소 정렬상태 가운데 */
-  }
-
-  .nav-title{
-    padding: 2rem 0;
-    padding: 1rem 0;
-    font-size: 3rem;
-  }
-
-  .nav-join {
-    color: black;
-    font-size: 2rem;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  .category-title{
-    font-size: 3rem;
-    text-align : center;
-  }
-
-  .category-item {
-    color: black;
-    width: 24%;
-    height: 8rem;
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: 1.6rem;
-  }
-
-  .category-item:hover{
-    color: #9ACD32;
-    cursor:pointer;
-  }
-
-  .inner {
-    padding : 0 1.5rem;
-  }
-
-  @media all and (min-width: 1024px) {
-    .inner {
-      max-width: 1024px;
-      margin: 0 auto;
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
-  }
 
-  /* 카카오맵 css */
-  body {
-    height: 98vh; /* vh = 화면 전체의 높이 */
-  }
+    html {
+      font-size: 10px;
+      font-family: "MICEGothic Bold";
+    }
 
-  nav{
-    height: 100px;
-  }
+    .nav-container {
+      padding: 2rem 0;
+      display: flex; /* 수평배치 */
+      flex-direction: row; /* 시작방향 글의 작성방향과 동일 */
+      justify-content: space-between; /* 요소 주위에 동일한 격을 둔다*/
+      align-items: center; /* 요소 정렬상태 가운데 */
+    }
 
-  main {
-    padding-top: 1.5rem;
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-  }
+    .nav-title{
+      padding: 2rem 0;
+      padding: 1rem 0;
+      font-size: 3rem;
+    }
 
-  #map{
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
-  }
+    .nav-join {
+      color: black;
+      font-size: 2rem;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-  /* 회원용/비회원용 헤더 설정 */
-  .dropdown {
-    position: relative;
-  }
+    .category-title{
+      font-size: 3rem;
+      text-align : center;
+    }
 
-  .dropdown-button {
-    font-family: inherit;
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-  }
+    .category-item {
+      color: black;
+      width: 24%;
+      height: 8rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1.6rem;
+    }
 
-  /* 로그인 버튼 기본값: 숨김처리 */
-  .dropdown-content {
-    position: absolute;
-    width: 100%;
-  }
+    .category-item:hover{
+      color: #9ACD32;
+      cursor:pointer;
+    }
 
-  .dropdown-content button {
-    display: block;
-    font-size: 1.5rem;
-    font-family: inherit;
-    width: 100%;
-    border: none;
-    color: white;
-    background-color: #606060;
-    cursor: pointer;
-  }
+    .inner {
+      padding : 0 1.5rem;
+    }
+
+    @media all and (min-width: 1024px) {
+      .inner {
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+    }
+
+    /* 카카오맵 css */
+    body {
+      height: 98vh; /* vh = 화면 전체의 높이 */
+    }
+
+    nav{
+      height: 100px;
+    }
+
+    main {
+      padding-top: 1.5rem;
+      height: calc(100% - 100px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    #map{
+      flex-grow: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 회원용/비회원용 헤더 설정 */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-button {
+      font-family: inherit;
+      font-size: 1.5rem;
+      border: none;
+      background: none;
+    }
+
+    /* 로그인 버튼 기본값: 숨김처리 */
+    .dropdown-content {
+      position: absolute;
+      width: 100%;
+    }
+
+    .dropdown-content button {
+      display: block;
+      font-size: 1.5rem;
+      font-family: inherit;
+      width: 100%;
+      border: none;
+      color: white;
+      background-color: #606060;
+      cursor: pointer;
+    }
 
 
-  /*  */
+    /*  */
 
-  .sign-container {
-    font-size: 2.5rem;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
+    .sign-container {
+      font-size: 2.5rem;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-  /* 로그인 */
+    /* 로그인 */
 
-  .signin-container {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* 개체의 너비, 높이에 대한 비율 */
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
+    .signin-container {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* 개체의 너비, 높이에 대한 비율 */
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
 
-  .signin-container h2 {
-    font-size: 3.5rem;
-  }
+    .signin-container h2 {
+      font-size: 3.5rem;
+    }
 
-  .signin-form {
-    width: 90%;
-    max-width: 50rem;
-    margin: 2rem auto 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
+    .signin-form {
+      width: 90%;
+      max-width: 50rem;
+      margin: 2rem auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
 
-  /*adminAdd 추가*/
-   .signin-form div {
-     font-size: 2rem;
-     padding-bottom: 1%;
-   }
+    /*adminAdd 추가*/
+     .signin-form div {
+       font-size: 2rem;
+       padding-bottom: 1%;
+     }
 
-  .signin-form input {
-    width: 100%;
-    font-size: 2rem;
-    line-height: 2;
-    border: 3px solid #606060;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-    align-items: center;
-  }
+    .signin-form input {
+      width: 100%;
+      font-size: 2rem;
+      line-height: 2;
+      border: 3px solid #606060;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      align-items: center;
+    }
 
-  #signin,
-  input#signup {
-    padding-left: 0;
-    background: #9ACD32;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-family: inherit;
-  }
+    #signin,
+    input#signup {
+      padding-left: 0;
+      background: #9ACD32;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-  #signin:hover,
-  input#signup:hover {
-    color: black;
-  }
+    #signin:hover,
+    input#signup:hover {
+      color: black;
+    }
 
-  .signup-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom:2rem;
-  }
+    .signup-container {
+      width: 100%;
+      text-align: center;
+      margin-bottom:2rem;
+    }
 
-  #signup {
-    display: block;
-    color: black;
-    font-size: 2rem;
-    text-decoration: none;
-  }
+    #signup {
+      display: block;
+      color: black;
+      font-size: 2rem;
+      text-decoration: none;
+    }
 
- /* 소셜 로그인 */
-  .login-container{
-    display:grid;
-    margin-top:2rem;
-    position: relative;
-    text-align: center;
-  }
+   /* 소셜 로그인 */
+    .login-container{
+      display:grid;
+      margin-top:2rem;
+      position: relative;
+      text-align: center;
+    }
 
-   .bt_add {
+     .bt_add {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0;
+      }
+
+      .bt_add a {
+        display: inline-block;
+        min-width: 80px;
+        margin-left: 10px;
+        padding: 10px;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius:  2px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .bt_add a:first-child {
+        margin-left: 85%;
+      }
+
+     .bt_add a.on {
+        background: #000;
+        color: #fff;
+     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 게시판 */
+    ul, li {
+      list-style: none;
+    }
+
+    .board_wrap {
+      width: 1000px;
+      margin: 100px auto;
+    }
+
+    .board_title{
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .board_title strong{
+      font-size: 3rem;
+    }
+
+    .board_title p {
+      margin-top: 5px;
+      font-size: 1.4rem;
+    }
+
+    .bt_wrap {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0;
+      padding: 30px;
+    }
+
+    .bt_wrap button {
+      display: inline-block;
+      min-width: 80px;
+      margin-right: 10px;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius:  2px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .bt_search{
+        margin: auto 0 0 auto;
+        padding : 10px;
+        text-align: center;
+        font-size: 0;
+    }
+
+    .bt_search input{
+      width : 200px;
+      height : 30px;
+      margin-right : 1px;
+    }
+
+    .bt_search button {
+        display: inline-block;
+        width: 50px;
+        height: 30px;
+        margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius:  2px;
+        font-size: 1.3rem;
+        cursor: pointer;
+        background: black;
+        color: white;
+        }
+
+    .bt_search .search_btn:hover{
+      color: green;
+      cursor:pointer;
+    }
+
+    .bt_wrap button:first-child {
+      margin-left: 0;
+    }
+
+    .bt_wrap button.on {
+      background: #000;
+      color: #fff;
+    }
+
+
+    .board_list {
+      width: 100%;
+      border-top: 1px solid #000;
+    }
+
+    td {
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.4rem;
+      padding: 15px 0;
+    }
+
+    th {
+      border-bottom: 1px solid #999;
+      font-weight: 600;
+      font-size: 1.4rem;
+      padding: 15px 0;
+    }
+
+    .board_list .title {
+      width: 45%;
+      text-align: left;
+    }
+
+    .board_list .top .title {
+      text-align: center;
+    }
+
+   /* .board_list > div {
+      border-bottom: 1px solid #ddd;
+      font-size: 0;
+    }
+
+    .board_list > div.top {
+      border-color: #999;
+    }
+
+    .board_list > div:last-child {
+      border-bottom: 1px solid #000;
+    }
+
+    .board_list > div > div {
+      display: inline-block;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    .board_list > div.top > div {
+      font-weight: 600;
+    }
+
+    .board_list .num {
+      width: 12%;
+    }
+
+    .board_list .title {
+      width: 46%;
+      text-align: left;
+    }
+
+    .board_list .top .title {
+      text-align: center;
+    }*/
+    .board_list .num {
+      width: 10%;
+    }
+
+    .board_list .writer {
+      width: 15%;
+    }
+
+    .board_list .date {
+      width: 18%;
+    }
+
+    .board_list .views {
+      width: 7%;
+    }
+    .board_page {
       margin-top: 30px;
       text-align: center;
       font-size: 0;
     }
 
-    .bt_add a {
+    /* 페이지 버튼 */
+    .board_page a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-left: 0;
+      vertical-align: middle;
+      line-height: 100%;
+    }
+
+    .board_page a.bt {
+      padding-top: 10px;
+      font-size: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .board_page a.num {
+      padding-top: 9px;
+      font-size: 1.4rem;
+    }
+
+    .board_page a.num.on {
+      border-color: #000;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .board_page a:first-child{
+      border-left: 1px solid #ddd;
+    }
+
+    /* 글보기 */
+    .board_view {
+      width: 100%;
+      border-top: 2px solid #000;
+    }
+
+    .board_view .title {
+      padding : 20px 15px;
+      border-bottom: 1px dashed #ddd;
+      font-size: 2rem;
+    }
+
+    .board_view .info {
+      padding: 15px;
+      border-bottom: 1px solid #999;
+      font-size: 0;
+    }
+
+   .board_view .info .info1 {
+      position: relative;
+      display: inline-block;
+      padding: 0 20px;
+    }
+
+    .board_view .info .info1:first-child {
+      padding-left: 0;
+    }
+
+    .board_view .info .info1::before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 0;
+      display: block;
+      width: 1px;
+      height: 13px;
+      background: #ddd;
+    }
+
+    .board_view .info .info1:first-child::before {
+      display: none;
+    }
+
+    .board_view .info .info1 dt,
+    .board_view .info .info1 .form-control {
+      display: inline-block;
+      font-size: 1.4rem;
+    }
+
+    .board_view .info .form-control {
+      display: inline-block;
+      font-size: 1.4rem;
+      margin-left: 10px;
+      color : #777;
+    }
+
+    .board_view .info .info1 .form-control {
+      margin-left: 10px;
+      color : #777;
+    }
+
+    .board_view .cont {
+      padding : 15px;
+      border-bottom: 1px solid #000;
+      line-height: 160%;
+      font-size: 1.4rem;
+    }
+
+    /* 댓글 */
+    .count{
+      display: flex;
+      padding-top: 2rem;
+      padding-bottom: 0.6rem;
+      font-size: 1.5rem;
+      margin-left: 15px;
+    }
+
+    .like-count {
+      padding-left: 0.5rem;
+      padding-right: 1rem;
+      color: #F5A9BC
+    }
+
+    .comment-count {
+      padding-left: 0.5rem;
+      color: #31B404;
+    }
+
+    .comment-list{
+      margin-top: 10px;
+      margin-left: 15px;
+    }
+
+    .comment-id {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .comment-content {
+      color: #585858;
+      font-size: 13px;
+      margin-left: 5px;
+      padding-bottom: 10px;
+    }
+
+    .comment-etc{
+      display: flex;
+    }
+
+    .comment-mod{
+      margin-left: 80rem;
+      padding-bottom: 5px;
+    }
+
+    .comment-mod button{
+      padding: 2px;
+      color: #000;
+      background-color: white;
+      border-radius: 2px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+
+    .comment-date {
+      color: #585858;
+      font-size: 11px;
+      margin-left: 5px;
+      padding-bottom: 5px;
+    }
+
+    .comment{
+      padding-top: 1.3rem;
+      padding-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+
+    #comment-input {
+      width : 100%;
+      height: 10rem;
+      resize: none;
+    }
+
+    textarea {
+      padding: 15px 15px;
+    }
+
+    textarea::placeholder {
+      font-weight: bold;
+    }
+
+    .comment-btn {
+      margin-top: 0.5rem;
       display: inline-block;
       min-width: 80px;
-      margin-left: 10px;
+      margin-left: 910px;
       padding: 10px;
-      border: 1px solid rgb(0, 0, 0);
-      border-radius:  2px;
-      font-size: 1.4rem;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .bt_add a:first-child {
-      margin-left: 85%;
-    }
-
-   .bt_add a.on {
-      background: #000;
-      color: #fff;
-   }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  /* 게시판 */
-  ul, li {
-    list-style: none;
-  }
-
-  .board_wrap {
-    width: 1000px;
-    margin: 100px auto;
-  }
-
-  .board_title{
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  .board_title strong{
-    font-size: 3rem;
-  }
-
-  .board_title p {
-    margin-top: 5px;
-    font-size: 1.4rem;
-  }
-
-  .bt_wrap {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0;
-  }
-
-  .bt_wrap button {
-    display: inline-block;
-    min-width: 80px;
-    margin-right: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius:  2px;
-    font-size: 1.4rem;
-    cursor: pointer;
-    background: #fff;
-  }
-
-  .bt_search{
-      margin: auto 0 0 auto;
-      padding : 10px;
-      text-align: center;
-      font-size: 0;
-  }
-
-  .bt_search input{
-    width : 200px;
-    height : 30px;
-    margin-right : 1px;
-  }
-
-  .bt_search button {
-      display: inline-block;
-      width: 50px;
-      height: 30px;
-      margin-left: 10px;
-      padding: 5px;
-      border: 1px solid #000;
-      border-radius:  2px;
-      font-size: 1.3rem;
-      cursor: pointer;
       background: black;
       color: white;
-      }
-
-  .bt_search .search_btn:hover{
-    color: green;
-    cursor:pointer;
-  }
-
-  .bt_wrap button:first-child {
-    margin-left: 0;
-  }
-
-  .bt_wrap button.on {
-    background: #000;
-    color: #fff;
-  }
-
-
-  .board_list {
-    width: 100%;
-    border-top: 1px solid #000;
-  }
-
-  td {
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-size: 1.4rem;
-    padding: 15px 0;
-  }
-
-  th {
-    border-bottom: 1px solid #999;
-    font-weight: 600;
-    font-size: 1.4rem;
-    padding: 15px 0;
-  }
-
-  .board_list .title {
-    width: 45%;
-    text-align: left;
-  }
-
-  .board_list .top .title {
-    text-align: center;
-  }
-
- /* .board_list > div {
-    border-bottom: 1px solid #ddd;
-    font-size: 0;
-  }
-
-  .board_list > div.top {
-    border-color: #999;
-  }
-
-  .board_list > div:last-child {
-    border-bottom: 1px solid #000;
-  }
-
-  .board_list > div > div {
-    display: inline-block;
-    padding: 15px 0;
-    text-align: center;
-    font-size: 1.4rem;
-  }
-
-  .board_list > div.top > div {
-    font-weight: 600;
-  }
-
-  .board_list .num {
-    width: 12%;
-  }
-
-  .board_list .title {
-    width: 46%;
-    text-align: left;
-  }
-
-  .board_list .top .title {
-    text-align: center;
-  }*/
-  .board_list .num {
-    width: 10%;
-  }
-
-  .board_list .writer {
-    width: 15%;
-  }
-
-  .board_list .date {
-    width: 18%;
-  }
-
-  .board_list .views {
-    width: 7%;
-  }
-  .board_page {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0;
-  }
-
-  /* 페이지 버튼 */
-  .board_page a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-left: 0;
-    vertical-align: middle;
-    line-height: 100%;
-  }
-
-  .board_page a.bt {
-    padding-top: 10px;
-    font-size: 1.2rem;
-    letter-spacing: -1px;
-  }
-
-  .board_page a.num {
-    padding-top: 9px;
-    font-size: 1.4rem;
-  }
-
-  .board_page a.num.on {
-    border-color: #000;
-    background-color: #000;
-    color: #fff;
-  }
-
-  .board_page a:first-child{
-    border-left: 1px solid #ddd;
-  }
-
-  /* 글보기 */
-  .board_view {
-    width: 100%;
-    border-top: 2px solid #000;
-  }
-
-  .board_view .title {
-    padding : 20px 15px;
-    border-bottom: 1px dashed #ddd;
-    font-size: 2rem;
-  }
-
-  .board_view .info {
-    padding: 15px;
-    border-bottom: 1px solid #999;
-    font-size: 0;
-  }
-
- .board_view .info .info1 {
-    position: relative;
-    display: inline-block;
-    padding: 0 20px;
-  }
-
-  .board_view .info .info1:first-child {
-    padding-left: 0;
-  }
-
-  .board_view .info .info1::before {
-    content: "";
-    position: absolute;
-    top: 1px;
-    left: 0;
-    display: block;
-    width: 1px;
-    height: 13px;
-    background: #ddd;
-  }
-
-  .board_view .info .info1:first-child::before {
-    display: none;
-  }
-
-  .board_view .info .info1 dt,
-  .board_view .info .info1 .form-control {
-    display: inline-block;
-    font-size: 1.4rem;
-  }
-
-  .board_view .info .form-control {
-    display: inline-block;
-    font-size: 1.4rem;
-    margin-left: 10px;
-    color : #777;
-  }
-
-  .board_view .info .info1 .form-control {
-    margin-left: 10px;
-    color : #777;
-  }
-
-  .board_view .cont {
-    padding : 15px;
-    border-bottom: 1px solid #000;
-    line-height: 160%;
-    font-size: 1.4rem;
-  }
-
-  /* 글쓰기 */
-  .board_write {
-    border-top : 2px solid #000;
-  }
-
-  .board_write .title,
-  .board_write .info {
-    padding: 15px;
-  }
-
-  .board_write .info {
-    border-top: 1px solid #ddd;
-    font-size: 0;
-  }
-
-  .board_write .title dl{
-    font-size: 0;
-  }
-
-  .board_write .info dl {
-    display: inline-block;
-    width: 50%;
-    vertical-align: middle;
-  }
-
-  .board_write .title dt,
-  .board_write .title dd,
-  .board_write .info dt,
-  .board_write .info dd {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 1.4rem;
-  }
-
-  .board_write .title dt,
-  .board_write .info dt {
-    width: 100px;
-  }
-
-  .board_write .title dd {
-    width: calc(100% - 100px);
-  }
-
-  .board_write .title input[type="text"],
-  .board_write .info input[type="text"],
-  .board_write .info input[type="password"]{
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .board_write .title input[type="text"] {
-    width: 80%;
-  }
-
-  .board_write .cont {
-    border-bottom: 1px solid #000;
-  }
-
-  .board_write .cont textarea {
-    display: block;
-    width: 100%;
-    height: 300px;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 0;
-    resize: vertical;
-  }
-
-  .field-error {
-   border-color: #dc3545;
-   color: #dc3545;
-  }
-
-   /* 어드민 항목 수정 */
-   .board_edit {
-     width: 100%;
-     border-top: 2px solid #000;
-   }
-
-   .board_edit > div {
-     border-bottom: 1px solid #ddd;
-     font-size: 0;
-   }
-
-   .board_edit > .top {
-     border-color: #999;
-   }
-
-   .board_edit > div:last-child {
-     border-bottom: 1px solid #000;
-   }
-
-   .board_edit > div > div {
-     display: inline-block;
-     padding: 15px 0;
-     text-align: center;
-     font-size: 1.4rem;
-   }
-
-
-   td {
-     text-align: center;
-     border-bottom: 1px solid #ddd;
-     font-size: 1.4rem;
-     padding: 15px 0;
-   }
-
-   th {
-     border-bottom: 1px solid #999;
-     font-weight: 600;
-     font-size: 1.4rem;
-     padding: 15px 0;
-   }
-
-   .board_edit > div.top > div {
-     font-weight: 600;
-   }
-
-   .board_edit .title {
-     width: 30%;
-   }
-
-   .board_edit .top .title {
-     text-align: center;
-   }
-
-   .board_edit .address {
-     width: 40%;
-   }
-
-   .board_edit .category {
-     width: 15%;
-   }
-
-   .board_edit .management {
-     width: 15%;
-   }
-
-   .bt_wrap {
-     margin-top: 30px;
-     text-align: center;
-     font-size: 0;
-   }
-
-   .bt_wrap a {
-     display: inline-block;
-     min-width: 80px;
-     margin-left: 10px;
-     padding: 10px;
-     border: 1px solid #000;
-     border-radius:  2px;
-     font-size: 1.4rem;
-     cursor: pointer;
-   }
-
-   .bt_wrap a:first-child {
-     margin-left: 0;
-   }
-
-   .bt_wrap a.on {
-     background: #000;
-     color: #fff;
-   }
-
- /* 유저 관리 페이지 */
-   .user_management {
-     width: 100%;
-     border-top: 2px solid #000;
-   }
-
-   td {
-     text-align: center;
-     border-bottom: 1px solid #ddd;
-     font-size: 1.4rem;
-     padding: 15px 0;
-   }
-
-   th {
-     border-bottom: 1px solid #999;
-     font-weight: 600;
-     font-size: 1.4rem;
-     padding: 15px 0;
-   }
-
-   .user_management .number {
-     width: 5%;
-   }
-
-   .user_management .userId {
-     width: 10;
-   }
-
-   .user_management .name {
-     width: 10%;
-   }
-
-   .user_management .top .name {
-     text-align: center;
-   }
-
-   .user_management .loginId {
-     width: 10%;
-   }
-
-   .user_management .age {
-     width: 10%;
-   }
-
-   .user_management .category {
-     width: 10%;
-   }
-
-     .user_management .management {
-     width: 10%;
-   }
-
-   /* 관리자 홈페이지 */
-   .category-item1 {
-     color: black;
-     width: 200px;
-     height: 8rem;
-     background: none;
-     border: none;
-     font-family: inherit;
-     font-size: 1.6rem;
-   }
-
-   .category-item1.bt_add{
-     color: #9ACD32;
-     cursor:pointer;
-   }
-
-   .category-item1:hover{
-     color: #9ACD32;
-     cursor:pointer;
-   }
-
-   /* 관리자 페이지 카테고리 */
-   .category-list{
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     align-items: center;
-   }
-
-   .board2_title{
-     margin-top: 40px;
-   }
-
-   .board2_title strong{
-     font-size: 3rem;
-   }
-
-   .board2_title p {
-     margin-top: 5px;
-     font-size: 1.4rem;
-   }
-
-   .category-item2 {
-     color: black;
-     width: 24%;
-     height: 8rem;
-     background: none;
-     border: none;
-     font-family: inherit;
-     font-size: 1.6rem;
-   }
-
-   .category-item2.bt_add{
-     color: #9ACD32;
-     cursor:pointer;
-   }
-
-   .category-item2:hover{
-     color: #9ACD32;
-     cursor:pointer;
-   }
-
-   .bt_add {
-     margin-top: 30px;
-     text-align: center;
-     font-size: 0;
-   }
-
-   .bt_add .add {
-     display: inline-block;
-     min-width: 70px;
-     margin-left: 10px;
-     padding: 10px;
-     border: 1px solid rgb(0, 0, 0);
-     border-radius: 3px;
-     font-size: 1.4rem;
-     cursor: pointer;
-     text-align: center;
-   }
-
-   .bt_add .add:first-child {
-     margin-left: 85%;
-   }
-
-   .bt_add .add {
-     background: #000;
-     color: #fff;
-   }
-
-   /* option select*/
-   /* IE */
-   select::-ms-expand {
-      display: none;
-   }
-   .select {
-     -o-appearance: none;
-     -webkit-appearance: none;
-     -moz-appearance: none;
-     appearance: none;
-   }
-
-   .select {
-     height: 45px;
-     background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
-     background-size: 20px;
-     padding: 5px 30px 5px 10px;
-     outline: 0 none;
-     border: 3px solid #606060;
-     margin-bottom: 1rem;
-     font-size: 1.5rem;
-   }
-
-   .select option {
-     background: black;
-     color: #fff;
-     padding: 3px 0;
-   }
-
-   .admin-form {
-       width: 90%;
-       max-width: 50rem;
-       margin: 2rem auto 0;
-       display: flex;
-       flex-direction: column;
-       position: relative;
-     }
-
-    .admin-form div {
-        text-align: left;
-        font-size: 2rem;
-        padding-bottom: 1%;
+      border: 1px solid #000;
+      border-radius: 2px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      margin-bottom: 2.5rem;
     }
 
-     .admin-form input {
+    /* 글쓰기 */
+    .board_write {
+      border-top : 2px solid #000;
+    }
+
+    .board_write .title,
+    .board_write .info {
+      padding: 15px;
+    }
+
+    .board_write .info {
+      border-top: 1px solid #ddd;
+      font-size: 0;
+    }
+
+    .board_write .title dl{
+      font-size: 0;
+    }
+
+    .board_write .info dl {
+      display: inline-block;
+      width: 50%;
+      vertical-align: middle;
+    }
+
+    .board_write .title dt,
+    .board_write .title dd,
+    .board_write .info dt,
+    .board_write .info dd {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 1.4rem;
+    }
+
+    .board_write .title dt,
+    .board_write .info dt {
+      width: 100px;
+    }
+
+    .board_write .title dd {
+      width: calc(100% - 100px);
+    }
+
+    .board_write .title input[type="text"],
+    .board_write .info input[type="text"],
+    .board_write .info input[type="password"]{
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .board_write .title input[type="text"] {
+      width: 80%;
+    }
+
+    .board_write .cont {
+      border-bottom: 1px solid #000;
+    }
+
+    .board_write .cont textarea {
+      display: block;
+      width: 100%;
+      height: 300px;
+      padding: 15px;
+      box-sizing: border-box;
+      border: 0;
+      resize: vertical;
+    }
+
+    .field-error {
+     border-color: #dc3545;
+     color: #dc3545;
+    }
+
+     /* 어드민 항목 수정 */
+     .board_edit {
        width: 100%;
-       font-size: 2rem;
-       line-height: 2;
-       border: 3px solid #606060;
-       margin-bottom: 1rem;
-       padding-left: 1rem;
+       border-top: 2px solid #000;
+     }
+
+     .board_edit > div {
+       border-bottom: 1px solid #ddd;
+       font-size: 0;
+     }
+
+     .board_edit > .top {
+       border-color: #999;
+     }
+
+     .board_edit > div:last-child {
+       border-bottom: 1px solid #000;
+     }
+
+     .board_edit > div > div {
+       display: inline-block;
+       padding: 15px 0;
+       text-align: center;
+       font-size: 1.4rem;
+     }
+
+
+     td {
+       text-align: center;
+       border-bottom: 1px solid #ddd;
+       font-size: 1.4rem;
+       padding: 15px 0;
+     }
+
+     th {
+       border-bottom: 1px solid #999;
+       font-weight: 600;
+       font-size: 1.4rem;
+       padding: 15px 0;
+     }
+
+     .board_edit > div.top > div {
+       font-weight: 600;
+     }
+
+     .board_edit .title {
+       width: 30%;
+     }
+
+     .board_edit .top .title {
+       text-align: center;
+     }
+
+     .board_edit .address {
+       width: 40%;
+     }
+
+     .board_edit .category {
+       width: 15%;
+     }
+
+     .board_edit .management {
+       width: 15%;
+     }
+
+     .bt_wrap {
+       margin-top: 20px;
+       text-align: center;
+       font-size: 0;
+       margin-bottom : 30px;
+     }
+
+     .bt_wrap a {
+       display: inline-block;
+       min-width: 80px;
+       margin-left: 10px;
+       padding: 10px;
+       border: 1px solid #000;
+       border-radius:  2px;
+       font-size: 1.4rem;
+       cursor: pointer;
+     }
+
+     .bt_wrap a:first-child {
+       margin-left: 0;
+     }
+
+     .bt_wrap a.on {
+       background: #000;
+       color: #fff;
+     }
+
+   /* 유저 관리 페이지 */
+     .user_management {
+       width: 100%;
+       border-top: 2px solid #000;
+     }
+
+     td {
+       text-align: center;
+       border-bottom: 1px solid #ddd;
+       font-size: 1.4rem;
+       padding: 15px 0;
+     }
+
+     th {
+       border-bottom: 1px solid #999;
+       font-weight: 600;
+       font-size: 1.4rem;
+       padding: 15px 0;
+     }
+
+     .user_management .number {
+       width: 5%;
+     }
+
+     .user_management .userId {
+       width: 10;
+     }
+
+     .user_management .name {
+       width: 10%;
+     }
+
+     .user_management .top .name {
+       text-align: center;
+     }
+
+     .user_management .loginId {
+       width: 10%;
+     }
+
+     .user_management .age {
+       width: 10%;
+     }
+
+     .user_management .category {
+       width: 10%;
+     }
+
+       .user_management .management {
+       width: 10%;
+     }
+
+     /* 관리자 홈페이지 */
+     .category-item1 {
+       color: black;
+       width: 200px;
+       height: 8rem;
+       background: none;
+       border: none;
+       font-family: inherit;
+       font-size: 1.6rem;
+     }
+
+     .category-item1.bt_add{
+       color: #9ACD32;
+       cursor:pointer;
+     }
+
+     .category-item1:hover{
+       color: #9ACD32;
+       cursor:pointer;
+     }
+
+     /* 관리자 페이지 카테고리 */
+     .category-list{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
        align-items: center;
      }
+
+     .board2_title{
+       margin-top: 40px;
+     }
+
+     .board2_title strong{
+       font-size: 3rem;
+     }
+
+     .board2_title p {
+       margin-top: 5px;
+       font-size: 1.4rem;
+     }
+
+     .category-item2 {
+       color: black;
+       width: 24%;
+       height: 8rem;
+       background: none;
+       border: none;
+       font-family: inherit;
+       font-size: 1.6rem;
+     }
+
+     .category-item2.bt_add{
+       color: #9ACD32;
+       cursor:pointer;
+     }
+
+     .category-item2:hover{
+       color: #9ACD32;
+       cursor:pointer;
+     }
+
+     .bt_add {
+       margin-top: 30px;
+       text-align: center;
+       font-size: 0;
+     }
+
+     .bt_add .add {
+       display: inline-block;
+       min-width: 70px;
+       margin-left: 10px;
+       padding: 10px;
+       border: 1px solid rgb(0, 0, 0);
+       border-radius: 3px;
+       font-size: 1.4rem;
+       cursor: pointer;
+       text-align: center;
+     }
+
+     .bt_add .add:first-child {
+       margin-left: 85%;
+     }
+
+     .bt_add .add {
+       background: #000;
+       color: #fff;
+     }
+
+     /* option select*/
+     /* IE */
+     select::-ms-expand {
+        display: none;
+     }
+     .select {
+       -o-appearance: none;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       appearance: none;
+     }
+
+     .select {
+       height: 45px;
+       background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+       background-size: 20px;
+       padding: 5px 30px 5px 10px;
+       outline: 0 none;
+       border: 3px solid #606060;
+       margin-bottom: 1rem;
+       font-size: 1.5rem;
+     }
+
+     .select option {
+       background: black;
+       color: #fff;
+       padding: 3px 0;
+     }
+
+     .admin-form {
+         width: 90%;
+         max-width: 50rem;
+         margin: 2rem auto 0;
+         display: flex;
+         flex-direction: column;
+         position: relative;
+       }
+
+      .admin-form div {
+          text-align: left;
+          font-size: 2rem;
+          padding-bottom: 1%;
+      }
+
+       .admin-form input {
+         width: 100%;
+         font-size: 2rem;
+         line-height: 2;
+         border: 3px solid #606060;
+         margin-bottom: 1rem;
+         padding-left: 1rem;
+         align-items: center;
+       }
+

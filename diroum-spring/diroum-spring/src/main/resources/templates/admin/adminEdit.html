@@ -13,28 +13,7 @@
 
 <body>
 <nav>
-    <div class="inner">
-        <div class="nav-container">
-            <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-
-            <div class="sign-container">
-                <!-- 회원 -->
-                <div class="signed">
-                    <div class="dropdown">
-                        <div class="dropdown-button">
-                            안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
-                        </div>
-                        <form th:action="@{/logout}" method="post">
-                            <div class="dropdown-content">
-                                <button type="submit" id="sign-out">로그아웃</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    <header th:replace="fragments/header::headerFragment"></header>
 </nav>
 
 <main>
@@ -45,8 +24,8 @@
                 <div class="admin-form">
                     <div class="category">카테고리</div>
 
-                    <select name="category" class="select" th:value="*{category}">
-                        <option disabled selected>카테고리 선택</option>
+                    <select name="category" class="select" th:field="*{category}" th:value="*{category}">
+                        <option>카테고리 선택</option>
                         <option value="allGasStation" th:selected="*{category}=='전체 주유소'">전체 주유소</option>
                         <option value="payBackGas" th:selected="*{category}=='페이백 주유소'">페이백 주유소</option>
                         <option value="noPayBack" th:selected="*{category}=='페이백 제외 업체'">페이백 제외 업체</option>

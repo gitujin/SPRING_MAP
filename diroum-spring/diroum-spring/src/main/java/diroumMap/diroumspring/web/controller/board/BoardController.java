@@ -3,18 +3,17 @@ package diroumMap.diroumspring.web.controller.board;
 import diroumMap.diroumspring.security.UsersAdapter;
 import diroumMap.diroumspring.web.domain.Board;
 import diroumMap.diroumspring.web.domain.users.Users;
+import diroumMap.diroumspring.web.dto.CommentDto;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.service.BoardService;
+import diroumMap.diroumspring.web.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +29,7 @@ import javax.validation.Valid;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     @GetMapping
     public String postList(String keyword, Model model,
@@ -69,6 +69,7 @@ public class BoardController {
         // 상세보기
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
+        model.addAttribute("commentDto", new CommentDto());
 
         return "board/post";
     }

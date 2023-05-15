@@ -1,6 +1,7 @@
 package diroumMap.diroumspring.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import diroumMap.diroumspring.web.domain.users.Users;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,6 +35,11 @@ public class Board{
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private Users users;
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")
+    @JsonIgnoreProperties({"board"})
+    private List<Comment> comments;
 
     private String registerDate;
 

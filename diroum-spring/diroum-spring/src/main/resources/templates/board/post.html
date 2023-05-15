@@ -7,6 +7,8 @@
   <title>다이로움 페이백</title>
   <meta name="author" content="송유진" />
   <meta name="description" content="다이로움 페이백 가능지점" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="/js/writeComment.js"></script>
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link rel="stylesheet" th:href="@{/css/map.css}" />
   <link href="https://cdn-icons-png.flaticon.com/512/306/306776.png" rel="shortcut icon" type="image/x-icon">
@@ -14,28 +16,7 @@
 
 <body>
 <nav>
-  <div class="inner">
-    <div class="nav-container">
-      <h1 class="nav-title"><a href="/">다이로움 지도</a></h1>
-
-      <div class="sign-container">
-        <!-- 회원 -->
-        <div class="signed">
-          <div class="dropdown">
-            <div class="dropdown-button">
-              안녕하세요. <span th:text="|${#authentication.name}|"></span>님.
-            </div>
-            <form th:action="@{/logout}" method="post">
-              <div class="dropdown-content">
-                <button type="submit" id="sign-out">로그아웃</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <header th:replace="fragments/header::headerFragment"></header>
 </nav>
 
 <div class="inner">
@@ -46,39 +27,82 @@
     <div class="board_view">
       <div class="title">
         <div type="text" id="postTitle" name="postTitle" class="form-control"
-             value="제목" th:text="${post.title}" readonly></div>
+             value="제목" th:text="${post.title}" readonly>지금 실험중입니당</div>
       </div>
       <div class="info">
 
         <div class="info1">
           <dt>번호</dt>
           <div type="text" id="postId" name="postId" class="form-control"
-               value="1" th:text="${post.id}" readonly></div>
+               value="1" th:text="${post.id}" readonly>1</div>
         </div>
 
         <div class="info1">
           <dt>글쓴이</dt>
           <div type="text" id="writer" name="postTitle" class="form-control"
-               value="작성자" th:text="${post.users.loginId}" readonly></div>
+               value="작성자" th:text="${post.users.loginId}" readonly>유진</div>
         </div>
 
         <div class="info1">
           <dt>작성일</dt>
           <div type="text" id="registerDate" name="registerDate" class="form-control"
-               value="작성자" th:text="${post.registerDate}" readonly></div>
+               value="작성자" th:text="${post.registerDate}" readonly>2023. 04. 16</div>
         </div>
 
         <div class="info1">
           <dt>조회수</dt>
           <div type="text" id="clickEvent" name="clickEvent" class="form-control"
-               value="조회수" th:text="${board.count}" readonly></div>
+               value="조회수" th:text="${board.count}" readonly>234</div>
         </div>
 
       </div>
       <div class="cont">
         <div class="form-control" rows="5" id="postContent" name="postContent"
-             th:value="${post.content}" th:text="${post.content}" readonly></div>
+             th:value="${post.content}" th:text="${post.content}" readonly>글 내용 글 내용 글 내용 글 내용</div>
       </div>
+    </div>
+
+    <div class = "count">
+      <dt>좋아요</dt>
+      <div class="like-count">31</div>
+
+      <dt>댓글</dt>
+      <div class="comment-count">1</div>
+    </div>
+
+    <hr>
+
+    <!-- 댓글 리스트 -->
+    <div class="comment-list" th:each="comment : ${board.comments}">
+        <div class="comment-id" th:text="${comment.users.loginId}">유찡</div>
+        <div class="comment-content" th:text="${comment.comment}">안녕하세요</div>
+
+        <div class="comment-etc">
+            <div class="comment-date"th:text="${comment.createdDate}">2023.04.16</div>
+            <div class="comment-mod">
+                <form th:action="@{/board/{postId}/delete(postId=${post.id})}" method="post">
+                    <span th:if="${#authentication.principal.users.id} == ${comment.users.id}">
+                        <button class="mod" th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|" type="button">수정</button>
+                        <button class="comment-delete" type="submit">삭제</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div>
+      <!-- 댓글 작성 -->
+      <div class="comment">댓글</div>
+        <form th:action="@{/board/{postId}/comment(postId=${post.id})}" th:object="${commentDto}" method="post">
+          <!-- hidden 영역 -->
+<!--          <input type="hidden" name="postId" th:value="${post.id}">-->
+<!--          <input type="hidden" name="userId" th:value="|${#authentication.name}|">-->
+
+          <textarea id="comment-input" class="comment-input" th:field="*{comment}" placeholder="댓글을 입력해 주세요."></textarea>
+          <button type="submit" id="comment-btn" class="comment-btn">댓글 등록</button>
+
+        </form>
     </div>
 
     <div class="bt_wrap">
@@ -86,10 +110,10 @@
         <button th:onclick="|location.href='@{/board}'|" type="button" class="on">목록</button>
         <span th:if="${#authentication.principal.users.id} == ${board.users.id}">
           <button th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|"
-                   type="button">수정</button>
-          <button type="submit">삭제</button>
+                  type="button">수정</button>
+          <button type="submit"
+                  onclick="if(!confirm('삭제하시면 복구할수 없습니다.\n정말로 삭제하시겠습니까?')){return false;}">삭제</button>
         </span>
-
       </form>
     </div>
 
@@ -98,5 +122,9 @@
 
 
 </main>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/js/comments.js"></script>
+
 </body>
 </html>

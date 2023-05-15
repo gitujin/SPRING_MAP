@@ -1,10 +1,13 @@
 package diroumMap.diroumspring.board;
 
 import diroumMap.diroumspring.web.domain.Board;
+import diroumMap.diroumspring.web.domain.Comment;
 import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.repository.BoardRepository;
+import diroumMap.diroumspring.web.repository.CommentRepository;
 import diroumMap.diroumspring.web.service.BoardService;
+import diroumMap.diroumspring.web.service.CommentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,10 @@ class BoardServiceTest {
     BoardService boardService;
     @Autowired
     BoardRepository boardRepository;
+    @Autowired
+    CommentService commentService;
+    @Autowired
+    CommentRepository commentRepository;
     @Autowired
     EntityManager em;
 
@@ -44,6 +51,27 @@ class BoardServiceTest {
         assertThat(board.getUsers()).isEqualTo(users);
 
     }
+
+//    @Test
+//    @DisplayName("댓글 작성 테스트")
+//    public void registerComments(){
+//        //given
+//        Users users = Users.builder().loginId("userA").build();
+//        em.persist(users);
+//        Long registerId = boardService.register("AAA","BBB", users.getId());
+//        Board board = boardRepository.findById(registerId).orElseThrow();
+//
+//        //when
+//        Long writeComment = commentService.writeComment("AAA", users.getId(), board.getId());
+//
+//        //then
+//        Comment comment = commentRepository.findById(writeComment).orElseThrow();
+//
+//        assertThat(comment.getComment()).isEqualTo("AAA");
+//        assertThat(comment.getUsers()).isEqualTo(users);
+//        assertThat(comment.getBoard()).isEqualTo(board);
+//
+//    }
 
     @Test
     @DisplayName("글 수정 테스트")
