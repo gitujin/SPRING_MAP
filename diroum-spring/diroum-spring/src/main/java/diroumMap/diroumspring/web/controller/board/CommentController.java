@@ -25,11 +25,10 @@ public class CommentController {
 
 
     @PostMapping("/board/{postId}/comment")
-    public String replyWrite(@PathVariable("postId") Long postId, CommentDto commentDto,
+    public String replyWrite(Model model, @PathVariable("postId") Long postId, CommentDto commentDto,
                              @AuthenticationPrincipal UsersAdapter usersAdapter){
 
         Users users = usersAdapter.getUsers();
-
         commentService.writeComment(commentDto.getComment(), users.getId(), postId);
 
         return "redirect:";

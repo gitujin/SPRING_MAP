@@ -2,6 +2,7 @@ package diroumMap.diroumspring.web.controller.board;
 
 import diroumMap.diroumspring.security.UsersAdapter;
 import diroumMap.diroumspring.web.domain.Board;
+import diroumMap.diroumspring.web.domain.Comment;
 import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.CommentDto;
 import diroumMap.diroumspring.web.dto.PostDto;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -70,6 +72,10 @@ public class BoardController {
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
         model.addAttribute("commentDto", new CommentDto());
+
+        // 댓글 갯수
+        List<Comment> comments = commentService.commentsList(postId);
+        model.addAttribute("commentList", comments);
 
         return "board/post";
     }

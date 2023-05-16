@@ -25,7 +25,7 @@
                     <div class="category">카테고리</div>
 
                     <select name="category" class="select" th:field="*{category}" th:value="*{category}">
-                        <option>카테고리 선택</option>
+                        <option value="">카테고리 선택</option>
                         <option value="allGasStation" th:selected="*{category}=='전체 주유소'">전체 주유소</option>
                         <option value="payBackGas" th:selected="*{category}=='페이백 주유소'">페이백 주유소</option>
                         <option value="noPayBack" th:selected="*{category}=='페이백 제외 업체'">페이백 제외 업체</option>

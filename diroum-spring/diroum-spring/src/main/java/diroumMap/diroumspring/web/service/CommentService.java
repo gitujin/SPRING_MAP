@@ -42,8 +42,8 @@ public class CommentService {
     /**
      *  댓글 리스트
      */
-    public Page<Comment> commentsList(Pageable pageable){
-        return commentRepository.findAll(pageable);
+    public List<Comment> commentsList(Long postId){
+        return commentRepository.findByBoardId(postId);
     }
 
     /**

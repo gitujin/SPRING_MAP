@@ -29,6 +29,7 @@
         <div type="text" id="postTitle" name="postTitle" class="form-control"
              value="제목" th:text="${post.title}" readonly>지금 실험중입니당</div>
       </div>
+
       <div class="info">
 
         <div class="info1">
@@ -63,11 +64,14 @@
     </div>
 
     <div class = "count">
-      <dt>좋아요</dt>
-      <div class="like-count">31</div>
-
       <dt>댓글</dt>
-      <div class="comment-count">1</div>
+      <div class="comment-count" th:text="${#lists.size(commentList)}">1</div>
+
+      <button class="like-btn" type="submit">
+        <img src="/image/empty_heart.png">
+      </button>
+      <dt>좋아요</dt>
+      <div type="text" class="like-count">31</div>
     </div>
 
     <hr>
