@@ -522,12 +522,6 @@
       margin-left: 15px;
     }
 
-    .like-count {
-      padding-left: 0.5rem;
-      padding-right: 1rem;
-      color: #F5A9BC
-    }
-
     .comment-count {
       padding-left: 0.5rem;
       color: #31B404;
@@ -977,4 +971,14 @@
     padding-left: 5px;
     padding-right: 5px;
     cursor: pointer;
+}
+
+.like-box{
+    display : flex;
+}
+
+.like-count {
+   padding-left: 0.5rem;
+   padding-right: 1rem;
+   color: #F5A9BC
 }

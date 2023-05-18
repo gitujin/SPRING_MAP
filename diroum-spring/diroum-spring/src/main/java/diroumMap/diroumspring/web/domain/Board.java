@@ -30,21 +30,26 @@ public class Board{
 
     private String title;
     private String content;
+    private String registerDate;
+
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Long count;
+
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Long likeCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private Users users;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("id asc")
     @JsonIgnoreProperties({"board"})
     private List<Comment> comments;
 
-    private String registerDate;
-
-    @Column(columnDefinition = "integer default 0", nullable = false)
-    private Long count;
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Like> like;
 
     @Builder
     public Board(String title, String content, Users users, LocalDateTime registerDate, Long count) {

@@ -24,8 +24,6 @@ public class Comment {
     @Column(name = "create_date")
     private String createdDate;
 
-
-
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board; //게시글

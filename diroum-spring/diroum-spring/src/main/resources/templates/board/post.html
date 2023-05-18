@@ -67,11 +67,22 @@
       <dt>댓글</dt>
       <div class="comment-count" th:text="${#lists.size(commentList)}">1</div>
 
-      <button class="like-btn" type="submit">
-        <img src="/image/empty_heart.png">
-      </button>
-      <dt>좋아요</dt>
-      <div type="text" class="like-count">31</div>
+      <div class="like-box">
+        <!-- 로그인 유저와 작성자가 동일하지 않다면 -->
+        <!-- 좋아요 -->
+        <input type="hidden" id="boardId" th:value="${post.id}">
+        <input type="hidden" id="like_check" th:value="${like}">
+        <img class="like-btn" th:id="likeImg" src="/image/empty_heart.png">
+
+        <div style="color:black">좋아요</div>
+        <div class="like-count" th:text="${post.likeCount}"></div>
+      </div>
+
+<!--      <button class="like-btn" type="submit">-->
+<!--        <img src="/image/empty_heart.png">-->
+<!--      </button>-->
+<!--      <dt>좋아요</dt>-->
+<!--      <div type="text" class="like-count">31</div>-->
     </div>
 
     <hr>
@@ -99,13 +110,8 @@
       <!-- 댓글 작성 -->
       <div class="comment">댓글</div>
         <form th:action="@{/board/{postId}/comment(postId=${post.id})}" th:object="${commentDto}" method="post">
-          <!-- hidden 영역 -->
-<!--          <input type="hidden" name="postId" th:value="${post.id}">-->
-<!--          <input type="hidden" name="userId" th:value="|${#authentication.name}|">-->
-
           <textarea id="comment-input" class="comment-input" th:field="*{comment}" placeholder="댓글을 입력해 주세요."></textarea>
           <button type="submit" id="comment-btn" class="comment-btn">댓글 등록</button>
-
         </form>
     </div>
 
@@ -128,7 +134,7 @@
 </main>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/js/comments.js"></script>
+<script src="/js/likeCheck.js"></script>
 
 </body>
 </html>

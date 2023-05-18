@@ -61,14 +61,16 @@ public class BoardController {
     }
 
     @GetMapping("/{postId}")
-    public String postView(@PathVariable Long postId, Model model) {
+    public String postView(@PathVariable("postId") Long postId,
+                           @AuthenticationPrincipal UsersAdapter user,
+                           Model model) {
         log.info("postView");
 
         // 조회수
         Board board = boardService.selectBoardDetail(postId);
         model.addAttribute("board", board);
 
-        // 상세보기
+        // 댓글
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
         model.addAttribute("commentDto", new CommentDto());
@@ -76,6 +78,19 @@ public class BoardController {
         // 댓글 갯수
         List<Comment> comments = commentService.commentsList(postId);
         model.addAttribute("commentList", comments);
+
+        /* 게시물 좋아요 */
+        boolean likes = false;
+
+        if(user != null){
+            //로그인 한 사용자라면
+            Long userId = user.getUsers().getId();
+            model.addAttribute("loginId", userId);
+
+            likes = boardService.findLike(postId, userId);
+        }
+
+        model.addAttribute("like", likes);
 
         return "board/post";
     }

@@ -1,9 +1,11 @@
 package diroumMap.diroumspring.web.service;
 
+import diroumMap.diroumspring.web.domain.Like;
 import diroumMap.diroumspring.web.domain.Store;
 import diroumMap.diroumspring.web.domain.users.Users;
 import diroumMap.diroumspring.web.dto.PostDto;
 import diroumMap.diroumspring.web.repository.BoardRepository;
+import diroumMap.diroumspring.web.repository.MemberLikePostRepository;
 import diroumMap.diroumspring.web.repository.UserRepository;
 import diroumMap.diroumspring.web.domain.Board;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
+    private final MemberLikePostRepository memberLikePostRepository;
 
     /**
     *  게시글 작성
@@ -106,5 +109,42 @@ public class BoardService {
     public Page<Board> boardList(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
+
+    /**
+     * 글 좋아요
+     */
+    @Transactional
+    public boolean saveLike(Long postId, Long userId){
+        /** 로그인 한 유저가 해당 게시물을 좋아요 했는지 안했는지 확인 **/
+        if(!findLike(postId, userId)) {
+
+            /* 좋아요 하지 않은 게시물이라면 좋아요 추가, true 반환 */
+            Users users = userRepository.findById(userId).orElseThrow(() ->
+                    new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+            Board board = boardRepository.findById(postId).orElseThrow(() ->
+                    new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+
+            /* 좋아요 엔티티 생성 */
+            Like like = new Like(users, board);
+            memberLikePostRepository.save(like);
+            boardRepository.plusLike(postId);
+
+            return true;
+        } else {
+
+            /* 좋아요 한 게시물이면 좋아요 삭제, false 반환 */
+            memberLikePostRepository.deleteByBoard_IdAndUsers_Id(postId, userId);
+            boardRepository.minusLike(postId);
+
+            return false;
+        }
+
+    }
+
+    @Transactional
+    public boolean findLike(Long postId, Long userId){
+        return memberLikePostRepository.existsByBoard_IdAndUsers_Id(postId, userId);
+    }
+
 }
 
