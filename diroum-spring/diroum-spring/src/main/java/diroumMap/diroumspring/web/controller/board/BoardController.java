@@ -1,13 +1,13 @@
 package diroumMap.diroumspring.web.controller.board;
 
 import diroumMap.diroumspring.security.UsersAdapter;
-import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.Comment;
+import diroumMap.diroumspring.web.domain.board.Board;
+import diroumMap.diroumspring.web.domain.comment.Comment;
 import diroumMap.diroumspring.web.domain.users.Users;
-import diroumMap.diroumspring.web.dto.CommentDto;
-import diroumMap.diroumspring.web.dto.PostDto;
-import diroumMap.diroumspring.web.service.BoardService;
-import diroumMap.diroumspring.web.service.CommentService;
+import diroumMap.diroumspring.web.dto.board.BoardDto;
+import diroumMap.diroumspring.web.dto.comment.CommentDto;
+import diroumMap.diroumspring.web.service.board.BoardService;
+import diroumMap.diroumspring.web.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -33,6 +33,7 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
 
+    /** 글 전체 조회 **/
     @GetMapping
     public String postList(String keyword, Model model,
                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -60,6 +61,7 @@ public class BoardController {
         return "board/postList";
     }
 
+    /** 글 상세 조회 페이지 **/
     @GetMapping("/{postId}")
     public String postView(@PathVariable("postId") Long postId,
                            @AuthenticationPrincipal UsersAdapter user,
@@ -70,10 +72,9 @@ public class BoardController {
         Board board = boardService.selectBoardDetail(postId);
         model.addAttribute("board", board);
 
-        // 댓글
         Board post = boardService.findOne(postId).orElseThrow();
         model.addAttribute("post", post);
-        model.addAttribute("commentDto", new CommentDto());
+        model.addAttribute("comments", new CommentDto());
 
         // 댓글 갯수
         List<Comment> comments = commentService.commentsList(postId);
@@ -95,16 +96,14 @@ public class BoardController {
         return "board/post";
     }
 
-    /**
-     * 글쓰기
-     */
+    /** 글쓰기 **/
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute PostDto postDto)  {
+    public String registerForm(@ModelAttribute BoardDto boardDto)  {
         return "board/registerForm";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute PostDto postDto, BindingResult bindingResult,
+    public String register(@ModelAttribute BoardDto boardDto, BindingResult bindingResult,
                            @AuthenticationPrincipal UsersAdapter usersAdapter,
                            RedirectAttributes redirectAttributes) {
 
@@ -115,39 +114,43 @@ public class BoardController {
 
         Users users = usersAdapter.getUsers();
 
-        Long registerId = boardService.register(postDto.getTitle(),postDto.getContent(), users.getId());
+        Long registerId = boardService.register(boardDto.getTitle(), boardDto.getContent(), users.getId());
         redirectAttributes.addAttribute("postId", registerId);
 
         return "redirect:/board";
     }
 
+    /** 글 수정 하기 **/
     @GetMapping("/{postId}/edit")
     public String editForm(@PathVariable Long postId, Model model){
 
         Board post = boardService.findOne(postId).orElseThrow();
-        PostDto postDto = new PostDto();
-        postDto.setTitle(post.getTitle());
-        postDto.setContent(post.getContent());
+        BoardDto boardDto = new BoardDto();
+        boardDto.setTitle(post.getTitle());
+        boardDto.setContent(post.getContent());
 
-        model.addAttribute("postDto", postDto);
+        model.addAttribute("boardDto", boardDto);
         model.addAttribute("postId", postId);
 
         return "board/editForm";
     }
 
     @PostMapping("/{postId}/edit")
-    public String edit(@PathVariable Long postId, @Valid @ModelAttribute PostDto postDto, BindingResult bindingResult){
+    public String edit(@PathVariable Long postId,
+                       @Valid @ModelAttribute BoardDto boardDto,
+                       BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
             return "board/editForm";
         }
 
-        boardService.updateBoard(postId, postDto.getTitle(), postDto.getContent());
+        boardService.updateBoard(postId, boardDto.getTitle(), boardDto.getContent());
 
         return "redirect:/board/{postId}";
     }
 
+    /** 글 삭제하기 **/
     @PostMapping("/{postId}/delete")
     public String delete(@PathVariable Long postId){
         boardService.deleteById(postId);

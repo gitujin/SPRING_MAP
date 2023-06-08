@@ -1,9 +1,9 @@
 package diroumMap.diroumspring.store;
 
-import diroumMap.diroumspring.web.repository.StoreRepository;
-import diroumMap.diroumspring.web.domain.Store;
+import diroumMap.diroumspring.web.repository.store.StoreRepository;
+import diroumMap.diroumspring.web.domain.store.Store;
 import diroumMap.diroumspring.web.domain.users.Users;
-import diroumMap.diroumspring.web.service.StoreService;
+import diroumMap.diroumspring.web.service.store.StoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

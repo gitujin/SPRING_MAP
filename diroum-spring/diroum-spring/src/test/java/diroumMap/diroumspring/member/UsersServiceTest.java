@@ -2,7 +2,7 @@ package diroumMap.diroumspring.member;
 
 import diroumMap.diroumspring.config.WebSecurityConfig;
 import diroumMap.diroumspring.web.domain.users.Users;
-import diroumMap.diroumspring.web.service.UserService;
+import diroumMap.diroumspring.web.service.users.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

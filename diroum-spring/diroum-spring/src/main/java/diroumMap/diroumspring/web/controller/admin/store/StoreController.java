@@ -1,8 +1,8 @@
 package diroumMap.diroumspring.web.controller.admin.store;
 
-import diroumMap.diroumspring.web.domain.Store;
-import diroumMap.diroumspring.web.dto.StoreDto;
-import diroumMap.diroumspring.web.service.StoreService;
+import diroumMap.diroumspring.web.domain.store.Store;
+import diroumMap.diroumspring.web.dto.store.StoreDto;
+import diroumMap.diroumspring.web.service.store.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -41,7 +40,7 @@ public class StoreController {
             list = storeService.search(keyword, pageable);
         }
 
-        int nowPage = list.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
+        int nowPage = list.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고 올 수있다 * 0부터 시작하니까 +1
         int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
         int endPage = Math.min(nowPage + 5, list.getTotalPages());
 

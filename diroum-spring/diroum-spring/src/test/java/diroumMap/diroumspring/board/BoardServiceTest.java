@@ -1,13 +1,11 @@
 package diroumMap.diroumspring.board;
 
-import diroumMap.diroumspring.web.domain.Board;
-import diroumMap.diroumspring.web.domain.Comment;
+import diroumMap.diroumspring.web.domain.board.Board;
 import diroumMap.diroumspring.web.domain.users.Users;
-import diroumMap.diroumspring.web.dto.PostDto;
-import diroumMap.diroumspring.web.repository.BoardRepository;
-import diroumMap.diroumspring.web.repository.CommentRepository;
-import diroumMap.diroumspring.web.service.BoardService;
-import diroumMap.diroumspring.web.service.CommentService;
+import diroumMap.diroumspring.web.repository.board.BoardRepository;
+import diroumMap.diroumspring.web.repository.comment.CommentRepository;
+import diroumMap.diroumspring.web.service.board.BoardService;
+import diroumMap.diroumspring.web.service.comment.CommentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

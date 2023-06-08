@@ -1,7 +1,7 @@
 $("#comment-btn").click(function (){
     console.log('댓글 등록 버튼 클릭');
 
-    var commentBean = {
+    var data = {
         writer : $("#userId").val(),
         content : $("#comment-input").val(),
         postId : $("#postId").val(),
@@ -9,8 +9,8 @@ $("#comment-btn").click(function (){
 
     $.ajax({
         type: 'post',
-        url : '/board/comment',
-        data : commentBean,
+        url : '/board/' + data.postId + 'comment',
+        data : data,
     })
     .done(function (fragment) {
             $('#comment-list').replaceWith(fragment);

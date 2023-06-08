@@ -1,6 +1,6 @@
 package diroumMap.diroumspring.web.controller.admin.user;
 
-import diroumMap.diroumspring.web.service.UserService;
+import diroumMap.diroumspring.web.service.users.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;

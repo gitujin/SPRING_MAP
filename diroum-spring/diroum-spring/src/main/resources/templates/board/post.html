@@ -78,11 +78,6 @@
         <div class="like-count" th:text="${post.likeCount}"></div>
       </div>
 
-<!--      <button class="like-btn" type="submit">-->
-<!--        <img src="/image/empty_heart.png">-->
-<!--      </button>-->
-<!--      <dt>좋아요</dt>-->
-<!--      <div type="text" class="like-count">31</div>-->
     </div>
 
     <hr>
@@ -90,15 +85,17 @@
     <!-- 댓글 리스트 -->
     <div class="comment-list" th:each="comment : ${board.comments}">
         <div class="comment-id" th:text="${comment.users.loginId}">유찡</div>
-        <div class="comment-content" th:text="${comment.comment}">안녕하세요</div>
+        <div class="comment-content" th:text="${comment.content}">안녕하세요</div>
 
         <div class="comment-etc">
             <div class="comment-date"th:text="${comment.createdDate}">2023.04.16</div>
             <div class="comment-mod">
-                <form th:action="@{/board/{postId}/delete(postId=${post.id})}" method="post">
+                <form action="post.html" method="post">
                     <span th:if="${#authentication.principal.users.id} == ${comment.users.id}">
-                        <button class="mod" th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|" type="button">수정</button>
-                        <button class="comment-delete" type="submit">삭제</button>
+                        <input type="hidden" th:value="${comment.id}" id="commentId" name="commentId">
+                        <!--<button class="mod" th:onclick="|location.href='@{/{postId}/comment/{commentId}(postId=${post.id})}'|" type="button">수정</button>-->
+                        <button class="comment-delete" type="submit" onclick="if(!confirm('삭제하시면 복구할 수 없습니다.\n정말로 삭제하시겠습니까?')){return false;}"
+                                th:formaction="|/board/${comment.board.id}/comment/delete|">삭제</button>
                     </span>
                 </form>
             </div>
@@ -109,8 +106,8 @@
     <div>
       <!-- 댓글 작성 -->
       <div class="comment">댓글</div>
-        <form th:action="@{/board/{postId}/comment(postId=${post.id})}" th:object="${commentDto}" method="post">
-          <textarea id="comment-input" class="comment-input" th:field="*{comment}" placeholder="댓글을 입력해 주세요."></textarea>
+        <form th:action="@{/board/{postId}/comment(postId=${post.id})}" th:object="${comments}" method="post">
+          <textarea id="comment-input" class="comment-input" th:field="*{contents}" placeholder="댓글을 입력해 주세요."></textarea>
           <button type="submit" id="comment-btn" class="comment-btn">댓글 등록</button>
         </form>
     </div>
@@ -119,10 +116,8 @@
       <form th:action="@{/board/{postId}/delete(postId=${post.id})}" method="post">
         <button th:onclick="|location.href='@{/board}'|" type="button" class="on">목록</button>
         <span th:if="${#authentication.principal.users.id} == ${board.users.id}">
-          <button th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|"
-                  type="button">수정</button>
-          <button type="submit"
-                  onclick="if(!confirm('삭제하시면 복구할수 없습니다.\n정말로 삭제하시겠습니까?')){return false;}">삭제</button>
+          <button th:onclick="|location.href='@{/board/{postId}/edit(postId=${post.id})}'|" type="button">수정</button>
+          <button type="submit" onclick="if(!confirm('삭제하시면 복구할 수 없습니다.\n정말로 삭제하시겠습니까?')){return false;}">삭제</button>
         </span>
       </form>
     </div>

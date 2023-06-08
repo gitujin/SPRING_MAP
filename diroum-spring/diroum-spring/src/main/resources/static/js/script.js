@@ -8,6 +8,7 @@ center: new kakao.maps.LatLng(35.9479447,126.9575551),
 level: 9
 };
 
+//지도 생성
 var map = new kakao.maps.Map(container, options);
 
 // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
@@ -223,8 +224,8 @@ function closeClusterer(){
 }
 
 /**
-6. 마커 클러스터러 사용하기
-*/
+  6. 마커 클러스터러 사용하기
+  */
     let clusterer = new kakao.maps.MarkerClusterer({
          map: map,
          averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정

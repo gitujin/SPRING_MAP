@@ -2,8 +2,8 @@ package diroumMap.diroumspring.web.controller.map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import diroumMap.diroumspring.web.repository.StoreInterface;
-import diroumMap.diroumspring.web.service.StoreService;
+import diroumMap.diroumspring.web.repository.store.StoreInterface;
+import diroumMap.diroumspring.web.service.store.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
