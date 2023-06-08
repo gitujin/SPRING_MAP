@@ -46,7 +46,7 @@
             </thead>
             <tbody>
                 <tr th:each="board:${list}">
-<!--                    <td class="num"><span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>-->
+<!--                    <td class="num">1<span th:text="${(resultMap.totalCnt - index.index)-(paging.pageNumber * paging.pageSize)}"></span></td>-->
                     <td class="num"><span th:text="${board.id}"></span></td>
                     <td class="title"><a th:href="@{/board/{postId}(postId=${board.id})}" th:text="${board.title}">제목</a></td>
                     <td class="writer" th:text="${board.users?.loginId}">작성자</td>
