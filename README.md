@@ -95,6 +95,7 @@
 # 4. DB 설계
 
 ### ERD
+<img width="775" alt="image" src="https://github.com/gitujin/SPRING_MAP/assets/97817358/14f8eb45-008b-486f-b6c7-9acd00766af9">
 
 # 5. API 설계
 
