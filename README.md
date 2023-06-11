@@ -36,6 +36,20 @@
 - **형상관리** : `GitHub`
 - **이슈관리** : `GitHub`
 
+## 1.2 기술 선택 이유
+### Spring이 아닌 SpringBoot를 선택한 이유
+강의를 들을 때 기존 스프링을 사용하여 개발할 때는 여러 설정을 직접 해야 했습니다. 대표적으로 프로젝트를 생성할 때마다 `Component Scan`, `DispatcherServlet`, `DataSource`, `EntityManagerFactory` 같은 설정을 한 다음, WAS까지 연동해야 개발을 시작할 수 있었습니다.
+
+SpringBoot는 다음과 같은 문제를 해결할 수 있습니다.
+1. 내장 서버
+2. Auto Configuration
+3. starter로 의존성 쉬운 의존성 관리
+4. jar파일로 쉬운 배포
+
+SpringBoot를 사용하면서 `ComponentScan`을 지정하고, `ViewResolver`를 등록하고 프로젝트와 WAS를 연결하는 번거로운 일이 자동화되고 더 개발에만 집중할 수 있는 환경을 얻을 수 있었습니다. 또한 `jar`로 빌드해서 쉬운 배포가 가능하기 때문에 스프링부트를 선택하였습니다.
+
+
+
 # 2. 프로젝트 요구사항
 
 ###### **주요 사항**
