@@ -123,5 +123,23 @@ SpringBoot를 사용하면서 `ComponentScan`을 지정하고, `ViewResolver`를
 <img width="775" alt="image" src="https://github.com/gitujin/SPRING_MAP/assets/97817358/14f8eb45-008b-486f-b6c7-9acd00766af9">
 
 # 5. API 설계
+## 회원 API
+![image](https://github.com/gitujin/SPRING_MAP/assets/97817358/f048d9d1-2dc0-4f65-9a40-83a9d4e88681)
+
+## 관리자 API
+![image](https://github.com/gitujin/SPRING_MAP/assets/97817358/70755df3-0896-4a70-95e0-4599cee2fb3b)
+
+## 게시판 API
+![image](https://github.com/gitujin/SPRING_MAP/assets/97817358/9312e2a1-e24d-4ad3-bdea-8c796b8ebb6a)
+
+## 댓글 API
+![image](https://github.com/gitujin/SPRING_MAP/assets/97817358/53493bf0-2677-4e49-93f2-69beaf99d512)
+
+## 지도 REST API
+![image](https://github.com/gitujin/SPRING_MAP/assets/97817358/e90e00b0-3211-43d7-af0a-4ffa11c49df7)
+
+
+
+
 
 
