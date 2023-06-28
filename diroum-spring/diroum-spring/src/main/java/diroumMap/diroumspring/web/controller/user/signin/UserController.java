@@ -50,7 +50,7 @@ public class UserController {
         }
 
         log.info("signup success");
-        return "redirect:/users/home";
+        return "redirect:/login/loginForm";
     }
 
 }

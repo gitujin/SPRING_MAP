@@ -24,6 +24,6 @@ public class BoardLikeController {
         log.info("글 좋아요");
 
         // 좋아요하지 않은 게시물이라 좋아요 했다면 true, 좋아요 한 게시물이라 삭제했다면 false
-        return  boardService.saveLike(postId, userId);
+        return boardService.saveLike(postId, userId);
     }
 }

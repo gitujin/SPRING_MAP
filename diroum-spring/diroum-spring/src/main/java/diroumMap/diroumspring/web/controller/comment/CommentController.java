@@ -16,8 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -25,8 +23,7 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
-    private final BoardService boardService;
-
+    
     /**
      * 댓글 작성
      */
@@ -39,14 +36,6 @@ public class CommentController {
         commentService.writeComment(commentDto.getContents(), users.getId(), postId);
 
         return "redirect:";
-    }
-
-    /**
-     * 댓글 수정
-     */
-    public void updateComment(@PathVariable Long commentId,
-                              @RequestBody String comment) throws Exception{
-        commentService.updateComment(commentId, comment);
     }
 
     /**
