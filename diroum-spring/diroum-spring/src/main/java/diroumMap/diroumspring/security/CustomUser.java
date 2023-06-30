@@ -3,7 +3,6 @@ package diroumMap.diroumspring.security;
 import diroumMap.diroumspring.web.domain.users.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.*;
 
