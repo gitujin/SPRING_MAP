@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -20,15 +21,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class BoardServiceTest {
 
-    @Autowired
+    @MockBean
     BoardService boardService;
-    @Autowired
+    @MockBean
     BoardRepository boardRepository;
-    @Autowired
+    @MockBean
     CommentService commentService;
-    @Autowired
+    @MockBean
     CommentRepository commentRepository;
-    @Autowired
+    @MockBean
     EntityManager em;
 
     @Test
