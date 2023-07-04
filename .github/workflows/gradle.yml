@@ -31,7 +31,7 @@ jobs:
         
     - uses: actions/checkout@v3
     - run: touch ./diroum-spring/diroum-spring/src/main/resources/application-mysql.properties
-    - run: echo "${{ secrets.DB }}" > ./diroum-spring/diroum-spring/src/main/resources/application-mysql.properties
+    - run: echo "${{ secrets.DB }}" >> ./diroum-spring/diroum-spring/src/main/resources/application-mysql.properties
     - run: cat ./diroum-spring/diroum-spring/src/main/resources/application-mysql.properties
     
     - name: init with Gradle
