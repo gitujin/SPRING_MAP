@@ -36,7 +36,7 @@ function getDataSet(categoryId){
     var dataSet;
 
     $.ajax({
-        url : "http://13.124.48.57:8080//Dairoum?category=" + qs,
+        url : "http://13.124.48.57:8080/Dairoum?category=" + qs,
         type : "get",
         async : false,
         dataType : "json",
