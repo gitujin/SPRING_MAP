@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
+@Table(name="store")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
 

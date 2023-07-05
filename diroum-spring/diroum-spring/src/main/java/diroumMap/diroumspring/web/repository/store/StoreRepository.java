@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    @Query(value = "select s.title, s.address, s.category from Store as s where s.category = :category", nativeQuery = true)
+    @Query(value = "select s.title, s.address, s.category from store as s where s.category = :category", nativeQuery = true)
     List<StoreInterface> findByCategorized(@Param("category") String category); //category별 지점.
 
     // 검색기능 1
