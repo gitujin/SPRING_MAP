@@ -27,7 +27,7 @@
     .nav-title{
       padding: 2rem 0;
       padding: 1rem 0;
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     .nav-join {
@@ -68,6 +68,29 @@
 
     .inner {
       padding : 0 1.5rem;
+    }
+
+    @media all and (min-width: 310px) and (max-width: 450px) {
+/*    *{
+        color : pink;
+        font-size: 0.7em;
+    }*/
+      /*.inner {
+        max-width: 1024px;
+        margin: 0 auto;
+      }*/
+      .nav-title{
+        font-size: 5.5vw;
+      }
+      .category-title{
+        font-size: 5vw;
+      }
+     .category-list .category-item1{
+        font-size: 3.2vw;
+     }
+     .inner .board_title strong{
+        font-size: 5vw;
+     }
     }
 
     @media all and (min-width: 1024px) {
@@ -282,15 +305,15 @@
 
     .bt_wrap button {
       display: inline-block;
-      min-width: 80px;
-      margin-right: 10px;
+      min-width: 60px;
+      margin-right: 2px;
       padding: 10px;
       border: 1px solid #000;
       border-radius:  2px;
       font-size: 1.4rem;
       cursor: pointer;
       background: white;
-      font-color: black;
+      color: black;
     }
 
     .bt_search{
