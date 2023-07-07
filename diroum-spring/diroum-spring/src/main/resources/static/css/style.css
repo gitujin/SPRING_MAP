@@ -289,7 +289,8 @@
       border-radius:  2px;
       font-size: 1.4rem;
       cursor: pointer;
-      background: #fff;
+      background: white;
+      font-color: black;
     }
 
     .bt_search{
@@ -556,7 +557,6 @@
     }
 
     .comment-mod{
-      margin-left: 83rem;
       padding-bottom: 5px;
     }
 
@@ -573,6 +573,7 @@
       color: #585858;
       font-size: 11px;
       margin-left: 5px;
+      margin-right:auto;
       padding-bottom: 5px;
     }
 
@@ -600,7 +601,7 @@
       margin-top: 0.5rem;
       display: inline-block;
       min-width: 80px;
-      margin-left: 910px;
+      float:right;
       padding: 10px;
       background: black;
       color: white;
