@@ -17,10 +17,10 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     /* 좋아요 추가 */
     @Modifying
-    @Query(value = "update Board board set board.like_count = board.like_count + 1 where board.board_id = :postId", nativeQuery = true)
+    @Query(value = "update board set board.like_count = board.like_count + 1 where board.board_id = :postId", nativeQuery = true)
     int plusLike(@Param("postId") Long postId);
 
     @Modifying
-    @Query(value = "update Board board set board.like_count = board.like_count - 1 where board.board_id = :postId", nativeQuery = true)
+    @Query(value = "update board set board.like_count = board.like_count - 1 where board.board_id = :postId", nativeQuery = true)
     int minusLike(@Param("postId") Long postId);
 }
