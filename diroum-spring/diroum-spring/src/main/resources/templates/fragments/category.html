@@ -11,7 +11,7 @@
         <button type="button" class="category-item1" id="noPayBack">페이백 제외 지점</button>
         <button class="category-item1" id="BOARD" type="button" th:onclick="|location.href='@{/board}'|">자유 게시판</button>
         <span sec:authorize="hasRole('ROLE_ADMIN')">
-           <button class="category-item1" id="management" th:onclick="|location.href='@{/admin/users/userList}'|">관리자 페이지</button>
+           <button type="button" class="category-item1" id="management" th:onclick="|location.href='@{/admin/users/userList}'|">관리자 페이지</button>
         </span>
       </div>
     </div>
