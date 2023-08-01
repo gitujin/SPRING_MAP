@@ -38,7 +38,7 @@ function getDataSet(categoryId){
     $.ajax({
         url : "https://dairoumiksanmap.com/Dairoum?category=" + qs,
         type : "get",
-        async : false,
+        async : true,
         dataType : "json",
         success : function (data){
             console.log("3", data);
