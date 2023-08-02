@@ -38,15 +38,15 @@ function getDataSet(categoryId){
     $.ajax({
         url : "https://dairoumiksanmap.com/Dairoum?category=" + qs,
         type : "get",
-        async : true,
+        async : false,
         dataType : "json",
         success : function (data){
-            console.log("3", data);
+            //console.log("3", data);
             dataSet = data;
         }
     })
 
-    console.log("4", dataSet);
+    //console.log("4", dataSet);
 
     return dataSet;
 }
@@ -58,7 +58,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 function setMap(dataSet){
 
-    dataSet.forEach(function getCoordsByAddress(value){
+    dataSet.forEach(function getCoordsByAddress(value) {
 
     geocoder.addressSearch(value.address, function(result, status){
 
@@ -127,9 +127,9 @@ function setMap(dataSet){
             customOverlay.setMap(null);
           });
         }
-        console.log("5 markerArray: ",markerArray);
+        //console.log("5 markerArray: ",markerArray);
 
-        console.log("6 markers: ", markers);
+        //console.log("6 markers: ", markers);
         clusterer.addMarkers(markers);
 
         });
@@ -153,15 +153,15 @@ categoryList.addEventListener("click", categoryHandler);
 async function categoryHandler(event){ //카테고리 클릭했을 때
 
     const categoryId = event.target.id;
-        console.log("1", categoryId);
+        //console.log("1", categoryId);
 
     const category = categoryMap[categoryId];
-        console.log("2", category);
+        //console.log("2", category);
 
 
     try {
     // 데이터 분류
-    let categorizedDataSet = await getDataSet(categoryId);
+    let categorizedDataSet = getDataSet(categoryId);
 
     // 기존 마커 삭제
     closeMarker();
